@@ -65,6 +65,7 @@ CREATE TABLE weapon (
 
 CREATE TABLE player_status (
     id VARCHAR(36) PRIMARY KEY,
+    player_id VARCHAR(36) REFERENCES player(id),
     hunger INT,
     thirst INT,
     stress INT,
