@@ -1,4 +1,5 @@
-DGCore.Constant = {}
+DGCore = DGCore or {}
+DGCore.Constant = DGCore.Constant or {}
 
 DGCore.Constant.Tables = {
     Player = 'player',
@@ -22,10 +23,10 @@ DGCore.Constant.Queries = {
     Player = {
         SelectById = string.format("SELECT * FROM %s WHERE id = ?", DGCore.Constant.Tables.Player),
         Insert = string.format(
-        "INSERT INTO %s (id, firstname, lastname, birthday, gender, nationality) VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO %s (id, firstname, lastname, birthday, gender, nationality) VALUES (?, ?, ?, ?, ?, ?)",
             DGCore.Constant.Tables.Player),
         Update = string.format(
-        "UPDATE %s SET firstname = ?, lastname = ?, birthday = ?, gender = ?, nationality = ? WHERE id = ?",
+            "UPDATE %s SET firstname = ?, lastname = ?, birthday = ?, gender = ?, nationality = ? WHERE id = ?",
             DGCore.Constant.Tables.Player),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.Player),
     },
@@ -62,30 +63,30 @@ DGCore.Constant.Queries = {
     Item = {
         SelectAll = string.format("SELECT * FROM %s", DGCore.Constant.Tables.Item),
         Insert = string.format(
-        "INSERT INTO %s (id, name, label, weight, category, ammotype, image, isstack, stacksize, isrightclick, isshouldclose, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO %s (id, name, label, weight, category, ammotype, image, isstack, stacksize, isrightclick, isshouldclose, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             DGCore.Constant.Tables.Item),
         Update = string.format(
-        "UPDATE %s SET name = ?, label = ?, weight = ?, category = ?, ammotype = ?, image = ?, isstack = ?, stacksize = ?, isrightclick = ?, isshouldclose = ?, description = ? WHERE id = ?",
+            "UPDATE %s SET name = ?, label = ?, weight = ?, category = ?, ammotype = ?, image = ?, isstack = ?, stacksize = ?, isrightclick = ?, isshouldclose = ?, description = ? WHERE id = ?",
             DGCore.Constant.Tables.Item),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.Item),
     },
     Weapon = {
         SelectAll = string.format("SELECT * FROM %s", DGCore.Constant.Tables.Weapon),
         Insert = string.format(
-        "INSERT INTO %s (id, item_id, damage, recoil, firerate, magazine_size, weapon_category) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO %s (id, item_id, damage, recoil, firerate, magazine_size, weapon_category) VALUES (?, ?, ?, ?, ?, ?, ?)",
             DGCore.Constant.Tables.Weapon),
         Update = string.format(
-        "UPDATE %s SET item_id = ?, damage = ?, recoil = ?, firerate = ?, magazine_size = ?, weapon_category = ? WHERE id = ?",
+            "UPDATE %s SET item_id = ?, damage = ?, recoil = ?, firerate = ?, magazine_size = ?, weapon_category = ? WHERE id = ?",
             DGCore.Constant.Tables.Weapon),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.Weapon),
     },
     PlayerStatus = {
         SelectById = string.format("SELECT * FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerStatus),
         Insert = string.format(
-        "INSERT INTO %s (id, hunger, thirst, stress, isdead, iscrippling, armor, ishandcuff, tracker, injail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO %s (id, hunger, thirst, stress, isdead, iscrippling, armor, ishandcuff, tracker, injail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             DGCore.Constant.Tables.PlayerStatus),
         Update = string.format(
-        "UPDATE %s SET hunger = ?, thirst = ?, stress = ?, isdead = ?, iscrippling = ?, armor = ?, ishandcuff = ?, tracker = ?, injail = ? WHERE id = ?",
+            "UPDATE %s SET hunger = ?, thirst = ?, stress = ?, isdead = ?, iscrippling = ?, armor = ?, ishandcuff = ?, tracker = ?, injail = ? WHERE id = ?",
             DGCore.Constant.Tables.PlayerStatus),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerStatus),
     },
@@ -101,18 +102,18 @@ DGCore.Constant.Queries = {
         SelectByPlayerItemId = string.format("SELECT * FROM %s WHERE player_item_id = ?",
             DGCore.Constant.Tables.PlayerItemStatus),
         Insert = string.format(
-        "INSERT INTO %s (id, player_item_id, durability, is_equipped, serial, times_used) VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO %s (id, player_item_id, durability, is_equipped, use_count) VALUES (?, ?, ?, ?, ?, ?)",
             DGCore.Constant.Tables.PlayerItemStatus),
         Update = string.format(
-        "UPDATE %s SET player_item_id = ?, durability = ?, is_equipped = ?, serial = ?, times_used = ? WHERE id = ?",
+            "UPDATE %s SET player_item_id = ?, durability = ?, is_equipped = ?, use_count = ? WHERE id = ?",
             DGCore.Constant.Tables.PlayerItemStatus),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerItemStatus),
     },
     PlayerWallet = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerWallet),
-        Insert = string.format("INSERT INTO %s (id, player_id, acoount_number, cash, crypto) VALUES (?, ?, ?, ?, ?)",
+        Insert = string.format("INSERT INTO %s (id, player_id, cash, crypto) VALUES (?, ?, ?, ?, ?)",
             DGCore.Constant.Tables.PlayerWallet),
-        Update = string.format("UPDATE %s SET player_id = ?, acoount_number = ?, cash = ?, crypto = ? WHERE id = ?",
+        Update = string.format("UPDATE %s SET player_id = ?, cash = ?, crypto = ? WHERE id = ?",
             DGCore.Constant.Tables.PlayerWallet),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerWallet),
     },
@@ -129,7 +130,7 @@ DGCore.Constant.Queries = {
         Insert = string.format("INSERT INTO %s (id, player_id, number) VALUES (?, ?, ?)",
             DGCore.Constant.Tables.PlayerPhone),
         Update = string.format("UPDATE %s SET player_id = ?, number = ? WHERE id = ?", DGCore.Constant.Tables
-        .PlayerPhone),
+            .PlayerPhone),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerPhone),
     },
     PlayerJob = {
@@ -139,5 +140,13 @@ DGCore.Constant.Queries = {
         Update = string.format("UPDATE %s SET player_id = ?, job_id = ?, job_grade_id = ? WHERE id = ?",
             DGCore.Constant.Tables.PlayerJob),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerJob),
+    },
+    PlayerGang = {
+        SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerGang),
+        Insert = string.format("INSERT INTO %s (id, player_id, gang_id, gang_grade_id) VALUES (?, ?, ?, ?)",
+            DGCore.Constant.Tables.PlayerGang),
+        Update = string.format("UPDATE %s SET player_id = ?, gang_id = ?, gang_grade_id = ? WHERE id = ?",
+            DGCore.Constant.Tables.PlayerGang),
+        Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerGang),
     },
 }

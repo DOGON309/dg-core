@@ -1,4 +1,5 @@
-DGCore.Constant = {}
+DGCore = DGCore or {}
+DGCore.Constant = DGCore.Constant or {}
 
 DGCore.Constant.GenderList = { 'other', 'female', 'male' }
 DGCore.Constant.BloodTypes = {

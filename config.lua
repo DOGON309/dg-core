@@ -30,7 +30,7 @@ DGConfig.Server.CheckDuplicateLicense = true
 DGConfig.Server.Permissions = { 'god', 'admin', 'mod' }
 
 DGConfig.Commands = {}
-DGConfig.COmmands.OOCColor = { 255, 151, 133 }
+DGConfig.Commands.OOCColor = { 255, 151, 133 }
 
 DGConfig.Notify = {}
 DGConfig.Notify.NotificationStyling = {

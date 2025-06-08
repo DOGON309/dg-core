@@ -1,5 +1,6 @@
 DGCore = DGCore or {}
 DGCore.Model = DGCore.Model or {}
+
 DGCore.Model.Job = {}
 
 function DGCore.Model.Job.new(data)
@@ -9,6 +10,7 @@ function DGCore.Model.Job.new(data)
     self.label = data.label
     self.defaultDuty = data.defaultDuty
     self.offDuty = data.offDuty
+    return self
 end
 
 function DGCore.Model.Job.fromJson(json)
@@ -33,6 +35,8 @@ function DGCore.Model.Job:toString()
     )
 end
 
+DGCore.Model.JobGrade = {}
+
 function DGCore.Model.JobGrade.new(data)
     local self = setmetatable({}, { __index = DGCore.Model.JobGrade })
     self.id = data.id
@@ -41,11 +45,12 @@ function DGCore.Model.JobGrade.new(data)
     self.label = data.label
     self.payment = data.payment
     self.isboss = data.isboss
+    return self
 end
 
 function DGCore.Model.JobGrade.fromJson(json)
     local data = json.decode(json)
-    return DGCore.Model.JobGrade.new(json)
+    return DGCore.Model.JobGrade.new(data)
 end
 
 function DGCore.Model.JobGrade:toJson()

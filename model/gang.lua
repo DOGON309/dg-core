@@ -1,11 +1,13 @@
 DGCore = DGCore or {}
 DGCore.Model = DGCore.Model or {}
+
 DGCore.Model.Gang = {}
 
 function DGCore.Model.Gang.new(data)
     local self = setmetatable({}, { __index = DGCore.Model.Gang })
     self.id = data.id
     self.label = data.label
+    return self
 end
 
 function DGCore.Model.Gang.fromJson(json)
@@ -28,6 +30,7 @@ function DGCore.Model.GangGrade.new(data)
     self.gang_id = data.gang_id
     self.level = data.level
     self.label = data.label
+    return self
 end
 
 function DGCore.Model.GangGrade.fromJson(json)

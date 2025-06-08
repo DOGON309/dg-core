@@ -1,5 +1,6 @@
 DGCore = DGCore or {}
 DGCore.Model = DGCore.Model or {}
+
 DGCore.Model.Item = {}
 
 function DGCore.Model.Item.new(data)
@@ -16,6 +17,7 @@ function DGCore.Model.Item.new(data)
     self.isrightclick = data.isrightclick
     self.isshouldclose = data.isshouldclose
     self.description = data.description
+    return self
 end
 
 function DGCore.Model.Item.fromJson(json)

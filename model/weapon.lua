@@ -1,5 +1,6 @@
 DGCore = DGCore or {}
 DGCore.Model = DGCore.Model or {}
+
 DGCore.Model.Weapon = {}
 
 function DGCore.Model.Weapon.new(data)
@@ -11,6 +12,7 @@ function DGCore.Model.Weapon.new(data)
     self.firerate = data.firerate
     self.magazine_size = data.magazine_size
     self.weapon_category = data.weapon_category
+    return self
 end
 
 function DGCore.Model.Weapon.fromJson(json)

@@ -7,7 +7,7 @@ CREATE TABLE player (
     birthday VARCHAR(255),
     gender VARCHAR(255),
     nationality VARCHAR(255)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE job (
     id VARCHAR(36) PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE job (
     label VARCHAR(255),
     defaultDuty BOOLEAN,
     offDuty BOOLEAN
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE job_grade (
     id VARCHAR(36) PRIMARY KEY,
@@ -24,19 +24,19 @@ CREATE TABLE job_grade (
     label VARCHAR(255),
     payment INT,
     isboss BOOLEAN
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE gang (
     id VARCHAR(36) PRIMARY KEY,
     label VARCHAR(255)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE gang_grade (
     id VARCHAR(36) PRIMARY KEY,
     gang_id VARCHAR(36) REFERENCES gang(id),
     level INT,
     label VARCHAR(255)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE item (
     id VARCHAR(36) PRIMARY KEY,
@@ -51,7 +51,7 @@ CREATE TABLE item (
     isrightclick BOOLEAN,
     isshouldclose BOOLEAN,
     description VARCHAR(255)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE weapon (
     id VARCHAR(36) PRIMARY KEY,
@@ -61,7 +61,7 @@ CREATE TABLE weapon (
     firerate FLOAT,
     magazine_size INT,
     weapon_category VARCHAR(255)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_status (
     id VARCHAR(36) PRIMARY KEY,
@@ -74,7 +74,7 @@ CREATE TABLE player_status (
     ishandcuff BOOLEAN,
     istracker BOOLEAN,
     isinjail BOOLEAN
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_item (
     id VARCHAR(36) PRIMARY KEY,
@@ -82,7 +82,7 @@ CREATE TABLE player_item (
     item_id VARCHAR(36) REFERENCES item(id),
     quantity INT,
     isjail BOOLEAN
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_item_status (
     id VARCHAR(36) PRIMARY KEY,
@@ -90,14 +90,14 @@ CREATE TABLE player_item_status (
     durability INT,
     is_equipped BOOLEAN,
     use_count INT
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_wallet (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     cash INT,
     crypto INT
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_bank (
     id VARCHAR(36) PRIMARY KEY,
@@ -105,24 +105,24 @@ CREATE TABLE player_bank (
     name VARCHAR(255),
     account_number VARCHAR(255),
     balance INT
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_phone (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     number VARCHAR(255)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_job (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     job_id VARCHAR(36) REFERENCES job(id),
     job_grade_id VARCHAR(36) REFERENCES job_grade(id)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE player_gang (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     gang_id VARCHAR(36) REFERENCES gang(id),
     gang_grade_id VARCHAR(36) REFERENCES gang_grade(id)
-)
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

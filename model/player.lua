@@ -2,6 +2,38 @@ DGCore = DGCore or {}
 DGCore.Model = DGCore.Model or {}
 DGCore.Model.Player = {}
 
+DGModel = DGModel or {}
+DGModel.Player = {}
+
+function DGModel.Player(playerData, playerStatus, playerItems, playerItemStatus, playerWallet, playerBank, playerJob,
+                        playerGang)
+    local items = {}
+    for i, item in ipairs(playerItems) do
+        item[i] = {
+            data = item,
+            status = playerItemStatus[i]
+        }
+    end
+
+    local data = {
+        id = playerData.id,
+        firstname = playerData.firstname,
+        lastname = playerData.lastname,
+        birthday = playerData.birthday,
+        gender = playerData.gender,
+        nationality = playerData.nationality,
+        --
+        status = playerStatus,
+        items = items,
+        wallet = playerWallet,
+        bank = playerBank,
+        job = playerJob,
+        gang = playerGang
+    }
+
+    return data
+end
+
 function DGCore.Model.Player.new(data)
     local self = setmetatable({}, { __index = DGCore.Model.Player })
     self.id = data.id
@@ -10,6 +42,7 @@ function DGCore.Model.Player.new(data)
     self.birthday = data.birthday
     self.gender = data.gender
     self.nationality = data.nationality
+    return self
 end
 
 function DGCore.Model.fromJson(json)
@@ -58,6 +91,7 @@ function DGCore.Model.PlayerStatus.new(data)
     self.ishandcuff = data.ishandcuff
     self.istracker = data.tracker
     self.isinjail = data.isinjail
+    return self
 end
 
 function DGCore.Model.PlayerStatus.fromJson(json)
@@ -97,6 +131,7 @@ function DGCore.Model.PlayerItem.new(data)
     self.item_id = data.item_id
     self.quantity = data.quantity
     self.isjail = data.isjail
+    return self
 end
 
 function DGCore.Model.PlayerItem.fromJson(json)
@@ -131,6 +166,7 @@ function DGCore.Model.PlayerItemStatus.new(data)
     self.durability = data.durability
     self.is_equipped = data.is_equipped
     self.use_count = data.use_count
+    return self
 end
 
 function DGCore.Model.PlayerItemStatus.fromJson(json)
@@ -159,10 +195,11 @@ DGCore.Model.PlayerWallet = {}
 
 function DGCore.Model.PlayerWallet.new(data)
     local self = setmetatable({}, { __index = DGCore.Model.PlayerWallet })
-    self.id = data.is
+    self.id = data.id
     self.player_id = data.player_id
     self.cash = data.cash
     self.crypto = data.crypto
+    return self
 end
 
 function DGCore.Model.PlayerWallet.fromJson(json)
@@ -173,7 +210,7 @@ end
 function DGCore.Model.PlayerWallet:toJson()
     return json.encode({
         id = self.id,
-        player_id = self.id,
+        player_id = self.player_id,
         cash = self.cash,
         crypto = self.crypto
     })
@@ -196,6 +233,7 @@ function DGCore.Model.PlayerBank.new(data)
     self.name = data.name
     self.account_number = data.account_number
     self.balance = data.balance
+    return self
 end
 
 function DGCore.Model.PlayerBank.fromJson(json)
@@ -226,6 +264,7 @@ function DGCore.Model.PlayerPhone.new(data)
     self.id = data.id
     self.player_id = data.player_id
     self.number = data.number
+    return self
 end
 
 function DGCore.Model.PlayerPhone.fromJson(json)
@@ -256,6 +295,7 @@ function DGCore.Model.PlayerJob.new(data)
     self.player_id = data.player_id
     self.job_id = data.job_id
     self.job_grade_id = data.job_grade_id
+    return self
 end
 
 function DGCore.Model.PlayerJob.fromJson(json)
