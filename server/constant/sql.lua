@@ -73,6 +73,8 @@ DGCore.Constant.Queries = {
     },
     PlayerStatus = {
         SelectById = string.format("SELECT * FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerStatus),
+        SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerStatus),
+        SelectJoinStatusByPlayerId = string.format("SELECT ps.* FROM %s p LEFT JOIN %s ps ON p.id = ps.player_id WHERE p.id = ?", DGCore.Constant.Tables.Player, DGCore.Constant.Tables.PlayerStatus),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerStatus),
         Insert = string.format("INSERT INTO %s (id, player_id, hunger, thirst, stress, isdead, iscrippling, armor, ishandcuff, tracker, injail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerStatus),
         Update = string.format("UPDATE %s SET hunger = ?, thirst = ?, stress = ?, isdead = ?, iscrippling = ?, armor = ?, ishandcuff = ?, tracker = ?, injail = ? WHERE id = ?", DGCore.Constant.Tables.PlayerStatus),
@@ -80,6 +82,7 @@ DGCore.Constant.Queries = {
     },
     PlayerItem = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerItem),
+        SelectJoinItemByPlayerId = string.format("SELECT pi.*, i.*, pis.* FROM %s pi JOIN %s i ON pi.item_id = i.id LEFT JOIN %s pis ON pi.id = pis.player_item_id WHERE pi.player_id = ?", DGCore.Constant.Tables.PlayerItem, DGCore.Constant.Tables.Item, DGCore.Constant.Tables.PlayerItemStatus),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerItem),
         Insert = string.format("INSERT INTO %s (id, player_id, item_id, quantity, isjail) VALUES (?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerItem),
         Update = string.format("UPDATE %s SET player_id = ?, item_id = ?, quantity = ?, isjail = ? WHERE id = ?", DGCore.Constant.Tables.PlayerItem),
@@ -94,6 +97,7 @@ DGCore.Constant.Queries = {
     },
     PlayerWallet = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerWallet),
+        SelectJoinWalletByPlayerId = string.format("SELECT pw.* FROM %s p LEFT JOIN %s pw ON p.id = pw.player_id WHERE p.id = ?", DGCore.Constant.Tables.Player, DGCore.Constant.Tables.PlayerWallet),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?)", DGCore.Constant.Tables.PlayerWallet),
         Insert = string.format("INSERT INTO %s (id, player_id, cash, crypto) VALUES (?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerWallet),
         Update = string.format("UPDATE %s SET player_id = ?, cash = ?, crypto = ? WHERE id = ?", DGCore.Constant.Tables.PlayerWallet),
@@ -101,6 +105,7 @@ DGCore.Constant.Queries = {
     },
     PlayerBank = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerBank),
+        SelectJoinBankByPlayerId = string.format("SELECT pb.* FROM %s p LEFT JOIN %s pb ON p.id = pb.player_id WHERE p.id = ?", DGCore.Constant.Tables.Player, DGCore.Constant.Tables.PlayerBank),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerBank),
         ExistsAccountNumber = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE account_number = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerBank),
         Insert = string.format("INSERT INTO %s (id, player_id, name, account_number, balance) VALUES (?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerBank),
@@ -109,20 +114,22 @@ DGCore.Constant.Queries = {
     },
     PlayerPhone = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerPhone),
-        Exists = string.format("SELECT EXISTS(SELECT 1 FROM %S WHERE ID = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerPhone),
+        Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE ID = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerPhone),
         Insert = string.format("INSERT INTO %s (id, player_id, number) VALUES (?, ?, ?)", DGCore.Constant.Tables.PlayerPhone),
         Update = string.format("UPDATE %s SET player_id = ?, number = ? WHERE id = ?", DGCore.Constant.Tables.PlayerPhone),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerPhone),
     },
     PlayerJob = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerJob),
-        Exists = string.format("SELECT EXISTS(SELECT 1 FROM WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerJob),
+        SelectJoinJobByPlayerId = string.format("SELECT pj.*, j.*, jg.id AS jg_id, jg.level AS jg_level, jg.label AS jg_label, jg.payment AS jg_payment, jg.isboss AS jg_isboss FROM %s pj JOIN %s j ON pj.job_id = j.id JOIN %s jg ON pj.job_grade_id = jg.id WHERE pj.player_id = ?", DGCore.Constant.Tables.PlayerJob, DGCore.Constant.Tables.Job, DGCore.Constant.Tables.JobGrade),
+        Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerJob),
         Insert = string.format("INSERT INTO %s (id, player_id, job_id, job_grade_id) VALUES (?, ?, ?, ?)", DGCore.Constant.Tables.PlayerJob),
         Update = string.format("UPDATE %s SET player_id = ?, job_id = ?, job_grade_id = ? WHERE id = ?", DGCore.Constant.Tables.PlayerJob),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerJob),
     },
     PlayerGang = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerGang),
+        SelectJoinGangByPlayerId = string.format("SELECT pg.*, g.*, gg.level AS gg_level, gg.label AS gg_label FROM %s pg JOIN %s g ON pg.gang_id = g.id JOIN %s gg ON pg.gang_grade_id = gg.id WHERE WHERE pg.player_id = ?", DGCore.Constant.Tables.PlayerGang, DGCore.Constant.Tables.Gang, DGCore.Constant.Tables.GangGrade),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerGang),
         Insert = string.format("INSERT INTO %s (id, player_id, gang_id, gang_grade_id) VALUES (?, ?, ?, ?)", DGCore.Constant.Tables.PlayerGang),
         Update = string.format("UPDATE %s SET player_id = ?, gang_id = ?, gang_grade_id = ? WHERE id = ?", DGCore.Constant.Tables.PlayerGang),
