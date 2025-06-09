@@ -50,6 +50,16 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
         }
     end
 
+    function self:save()
+        DGCore.Database.Player.update(self)
+        DGCore.Database.PlayerStatus.update(self.status)
+        DGCore.Database.PlayerItems.update(self.items)
+        DGCore.Database.PlayerWallet.update(self.wallet)
+        DGCore.Database.PlayerBanks.update(self.banks)
+        DGCore.Database.PlayerJobs.update(self.jobs)
+        DGCore.Database.PlayerGang.update(self.gang)
+    end
+
     return self
 end
 
@@ -64,6 +74,17 @@ function DGModel.PlayerData(playerData)
     self.birthday = playerData.birthday
     self.gender = playerData.gender
     self.nationality = playerData.nationality
+
+    function self:toUpdateArray()
+        return {
+            self.firstname,
+            self.lastname,
+            self.birthday,
+            self.gender,
+            self.nationality,
+            self.id
+        }
+    end
 
     return self
 end
@@ -82,6 +103,21 @@ function DGModel.PlayerStatus(playerStatus)
     self.ishandcuff = playerStatus.ishandcuff
     self.istracker = playerStatus.istracker
     self.isinjail = playerStatus.isinjail
+
+    function self:toUpdateArray()
+        return {
+            self.hunger,
+            self.thirst,
+            self.stress,
+            self.isdead,
+            self.iscrippling,
+            self.armor,
+            self.ishandcuff,
+            self.istracker,
+            self.isinjail,
+            self.id
+        }
+    end
 
     return self
 end
@@ -118,9 +154,27 @@ function DGModel.PlayerItem(playerItem)
     self.description = playerItem.description
 
     -- player_item_statusテーブル
-    self.durability = playerItem.durability
-    self.is_equipped = playerItem.is_equipped
-    self.use_count = playerItem.use_count
+    self.pis_id = playerItem.pis_id
+    self.pis_durability = playerItem.pis_durability
+    self.pis_is_equipped = playerItem.pis_is_equipped
+    self.pis_use_count = playerItem.pis_use_count
+
+    function self:toUpdateArray()
+        return {
+            self.quantity,
+            self.isjail,
+            self.id
+        }
+    end
+
+    function self:toStatusUpdateArray()
+        return {
+            self.pis_durability,
+            self.pis_is_equipped,
+            self.pis_use_count,
+            self.pis_id
+        }
+    end
 
     return self
 end
@@ -152,6 +206,15 @@ function DGModel.PlayerBank(playerBank)
     self.name = playerBank.name
     self.account_number = playerBank.account_number
     self.balance = playerBank.balance
+
+    function self:toUpdateArray()
+        return {
+            self.name,
+            self.account_number,
+            self.balance,
+            self.id
+        }
+    end
 
     return self
 end
@@ -185,6 +248,14 @@ function DGModel.PlayerJob(playerJob)
     self.jg_payment = playerJob.jg_payment
     self.jg_isboss = playerJob.jg_isboss
 
+    function self:toUpdateArray()
+        return {
+            self.job_id,
+            self.job_grade_id,
+            self.id
+        }
+    end
+
     return self
 end
 
@@ -203,6 +274,14 @@ function DGModel.PlayerGang(playerGang)
     -- gang_gradeテーブル
     self.gg_level = playerGang.level
     self.gg_label = playerGang.gg_label
+
+    function self:toUpdateArray()
+        return {
+            self.gang_id,
+            self.gang_grade_id,
+            self.id
+        }
+    end
 
     return self
 end
