@@ -2,6 +2,7 @@ DGCore = DGCore or {}
 DGCore.Constant = DGCore.Constant or {}
 
 DGCore.Constant.Tables = {
+    User = 'user',
     Player = 'player',
     Job = 'job',
     JobGrade = 'job_grade',
@@ -21,6 +22,14 @@ DGCore.Constant.Tables = {
 }
 
 DGCore.Constant.Queries = {
+    User = {
+        SelectById = string.format("SELECT * FROM %s WHERE id = ?", DGCore.Constant.Tables.User),
+        SelectByRockStartId = string.format("SELECT * FROM %s WHERE rockstart_id = ?", DGCore.Constant.Tables.User),
+        Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.User),
+        ExistsRockStartId = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE rockstart_id = ?) AS uniqueCheck", DGCore.Constant.Tables.User),
+        Insert = string.format("INSERT INTO %s (id, rockstart_id, is_admin, is_ban, ban_reason, is_whitelist) VALUES (?, ?, ?, ?, ?, ?)", DGCore.Constant.Tables.User),
+        Update = string.format("UPDATE %s SET is_admin = ?, is_ban = ?, ban_reason = ?, is_whitelist = ? WHERE id = ?", DGCore.Constant.Tables.User),
+    },
     Player = {
         SelectById = string.format("SELECT * FROM %s WHERE id = ?", DGCore.Constant.Tables.Player),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.playerStatus),

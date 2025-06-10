@@ -1,7 +1,17 @@
 USE dgcore;
 
-CREATE TABLE player (
+CREATE TABLE IF NOT EXISTS user (
     id VARCHAR(36) PRIMARY KEY,
+    rockstart_id VARCHAR(255) NOT NULL,
+    is_admin BOOLEAN DEFAULT NULL,
+    is_ban BOOLEAN DEFAULT NULL,
+    ban_reason VARCHAR(255) DEFAULT NULL,
+    is_whitelist BOOLEAN DEFAULT NULL
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS  player (
+    id VARCHAR(36) PRIMARY KEY,
+    user_id VARCHAR(36) REFERENCES user(id),
     firstname VARCHAR(255),
     lastname VARCHAR(255),
     birthday VARCHAR(255),
@@ -9,7 +19,7 @@ CREATE TABLE player (
     nationality VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE job (
+CREATE TABLE IF NOT EXISTS  job (
     id VARCHAR(36) PRIMARY KEY,
     event VARCHAR(255),
     label VARCHAR(255),
@@ -17,7 +27,7 @@ CREATE TABLE job (
     offDuty BOOLEAN
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE job_grade (
+CREATE TABLE IF NOT EXISTS  job_grade (
     id VARCHAR(36) PRIMARY KEY,
     job_id VARCHAR(36) REFERENCES job(id),
     level INT,
@@ -26,19 +36,19 @@ CREATE TABLE job_grade (
     isboss BOOLEAN
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE gang (
+CREATE TABLE IF NOT EXISTS  gang (
     id VARCHAR(36) PRIMARY KEY,
     label VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE gang_grade (
+CREATE TABLE IF NOT EXISTS  gang_grade (
     id VARCHAR(36) PRIMARY KEY,
     gang_id VARCHAR(36) REFERENCES gang(id),
     level INT,
     label VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE item (
+CREATE TABLE IF NOT EXISTS  item (
     id VARCHAR(36) PRIMARY KEY,
     name VARCHAR(36),
     label VARCHAR(255),
@@ -53,7 +63,7 @@ CREATE TABLE item (
     description VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE weapon (
+CREATE TABLE IF NOT EXISTS  weapon (
     id VARCHAR(36) PRIMARY KEY,
     item_id VARCHAR(36) UNIQUE REFERENCES item(id),
     damage INT,
@@ -63,7 +73,7 @@ CREATE TABLE weapon (
     weapon_category VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_status (
+CREATE TABLE IF NOT EXISTS  player_status (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     hunger INT,
@@ -77,7 +87,7 @@ CREATE TABLE player_status (
     isinjail BOOLEAN
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_item (
+CREATE TABLE IF NOT EXISTS  player_item (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     item_id VARCHAR(36) REFERENCES item(id),
@@ -85,7 +95,7 @@ CREATE TABLE player_item (
     isjail BOOLEAN
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_item_status (
+CREATE TABLE IF NOT EXISTS  player_item_status (
     id VARCHAR(36) PRIMARY KEY,
     player_item_id VARCHAR(36) REFERENCES player_item(id),
     durability INT,
@@ -93,14 +103,14 @@ CREATE TABLE player_item_status (
     use_count INT
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_wallet (
+CREATE TABLE IF NOT EXISTS  player_wallet (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     cash INT,
     crypto INT
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_bank (
+CREATE TABLE IF NOT EXISTS  player_bank (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     name VARCHAR(255),
@@ -108,20 +118,20 @@ CREATE TABLE player_bank (
     balance INT
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_phone (
+CREATE TABLE IF NOT EXISTS  player_phone (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     number VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_job (
+CREATE TABLE IF NOT EXISTS  player_job (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     job_id VARCHAR(36) REFERENCES job(id),
     job_grade_id VARCHAR(36) REFERENCES job_grade(id)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE player_gang (
+CREATE TABLE IF NOT EXISTS  player_gang (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     gang_id VARCHAR(36) REFERENCES gang(id),

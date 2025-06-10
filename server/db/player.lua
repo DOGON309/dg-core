@@ -9,6 +9,10 @@ DGCore.Database.PlayerBank = {}
 DGCore.Database.PlayerJob = {}
 DGCore.Database.PlayerGang = {}
 
+function DGCore.Database.Player.exists(playerId)
+    return DGDB.fetch(DGCore.Constant.Queries.Player.Exists, { playerId })
+end
+
 function DGCore.Database.Player.fetch(playerId)
     return DGDB.fetch(DGCore.Constant.Queries.Player.SelectById, { playerId })
 end

@@ -1,9 +1,5 @@
 DGCore = DGCore or {}
-DGCore.Model = DGCore.Model or {}
-DGCore.Model.Player = {}
-
 DGModel = DGModel or {}
-DGModel.Player = {}
 
 -- @playerData DGModel.PlayerData
 -- @playerStatus DGModel.PlayerStatus
@@ -100,6 +96,8 @@ function DGModel.PlayerData(playerData)
     return self
 end
 
+DGModel.PlayerStatus = {}
+
 function DGModel.PlayerStatus(playerStatus)
     local self = {}
 
@@ -149,6 +147,8 @@ function DGModel.PlayerStatus(playerStatus)
     return self
 end
 
+DGModel.PlayerItems = {}
+
 function DGModel.PlayerItems(playerItems)
     local result = {}
     for i, item in ipairs(playerItems) do
@@ -156,6 +156,8 @@ function DGModel.PlayerItems(playerItems)
     end
     return result
 end
+
+DGModel.PlayerItem = {}
 
 function DGModel.PlayerItem(playerItem)
     local self = {}
@@ -216,6 +218,8 @@ function DGModel.PlayerItem(playerItem)
     return self
 end
 
+DGModel.PlayerWallet = {}
+
 function DGModel.PlayerWallet(playerWallet)
     local self = {}
 
@@ -244,6 +248,8 @@ function DGModel.PlayerWallet(playerWallet)
     return self
 end
 
+DGModel.PlayerBanks = {}
+
 function DGModel.PlayerBanks(playerBanks)
     local result = {}
     for i, bank in ipairs(playerBanks) do
@@ -251,6 +257,8 @@ function DGModel.PlayerBanks(playerBanks)
     end
     return result
 end
+
+DGModel.PlayerBank = {}
 
 function DGModel.PlayerBank(playerBank)
     local self = {}
@@ -283,6 +291,8 @@ function DGModel.PlayerBank(playerBank)
     return self
 end
 
+DGModel.PlayerJobs = {}
+
 function DGModel.PlayerJobs(playerJobs)
     local result = {}
     for i, job in ipairs(playerJobs) do
@@ -290,6 +300,8 @@ function DGModel.PlayerJobs(playerJobs)
     end
     return result
 end
+
+DGModel.PlayerJobs = {}
 
 function DGModel.PlayerJob(playerJob)
     local self = {}
@@ -331,6 +343,8 @@ function DGModel.PlayerJob(playerJob)
 
     return self
 end
+
+DGModel.PlayerGang = {}
 
 function DGModel.PlayerGang(playerGang)
     local self = {}
