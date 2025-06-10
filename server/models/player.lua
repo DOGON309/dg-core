@@ -218,6 +218,28 @@ function DGModel.PlayerItem(playerItem)
         }
     end
 
+    -- クライアント向け
+    function self:toClient()
+        return {
+            id = self.id,
+            slot = self.slot,
+            quantity = self.quantity,
+            isjail = self.isjail,
+            name = self.name,
+            label = self.label,
+            weight = self.weight,
+            category = self.category,
+            image = self.image,
+            isstack = self.isstack,
+            stacksize = self.stacksize,
+            description = self.description,
+            isrightclick = self.isrightclick,
+            isshouldclose = self.isshouldclose,
+            durability = self.pis_durability,
+            is_equipped = self.pis_is_equipped
+        }
+    end
+
     return self
 end
 

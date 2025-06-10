@@ -1,4 +1,5 @@
 -- FiveMのイベント
+DGCore.Database.User = require('db.user');
 
 -- リソースが起動しようとした時に発火するイベント
 AddEventHandler('onResourceStarting', function(resourceName)

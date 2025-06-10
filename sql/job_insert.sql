@@ -9,7 +9,7 @@ INSERT INTO job (id, event, label, defaultDuty, offDuty) VALUES
 ('bef0fa0a-0456-48e6-8e4c-4975bda6377a', 'CarDealer', 'カーディーラー', TRUE, FALSE),
 ('0b6feee5-2555-47c4-939b-7d618398ac9b', 'Mechanic', '整備工場', TRUE, FALSE);
 
-INSERT INTO job_grade (id, job_id, label, payment) VALUES 
+INSERT INTO job_grade (id, job_id, level, label, payment, isboss) VALUES 
 ('66870BA7-B661-41C4-8212-EAB9F949BDA9', '53cb9e57-60bb-45ef-a5bc-8d4b911aa6a3', 0, 'フリーランス', 50, FALSE),
 ('5E3CCA19-7472-4942-9464-1F3257D8C852', '30b2d44f-8cf5-4ecd-9623-1542f05a3bad', 0, '巡査', 50, FALSE),
 ('7F30C1A4-97D3-4C90-B01D-9D3953FAA7DA', '30b2d44f-8cf5-4ecd-9623-1542f05a3bad', 1, '巡査長', 75, FALSE),
@@ -36,4 +36,4 @@ INSERT INTO job_grade (id, job_id, label, payment) VALUES
 ('9723A6EA-AD9F-4A3F-9BF9-72E61CAC4CFA', '1a47ee0e-369f-4f86-abb1-bf083c4849d8', 4, '部長', 150, TRUE),
 ('F1DC43ED-FD0A-4C0D-8829-80BA042CE745', '34ac0a4e-cfd8-4f28-8689-e4e23ab45751', 0, 'ドライバー', 50, FALSE),
 ('276B604A-F6AE-48EE-8F16-4E62E3E3DD04', 'bef0fa0a-0456-48e6-8e4c-4975bda6377a', 0, '販売員',  50, FALSE),
-('D467D69E-EC5A-4D44-B3AC-4EA87DD5A8CE', '0b6feee5-2555-47c4-939b-7d618398ac9b', 0, '整備員',  50, FALSE),
+('D467D69E-EC5A-4D44-B3AC-4EA87DD5A8CE', '0b6feee5-2555-47c4-939b-7d618398ac9b', 0, '整備員',  50, FALSE);

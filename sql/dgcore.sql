@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS  item (
     image VARCHAR(255),
     isstack BOOLEAN,
     stacksize INT,
-    isrightclick BOOLEAN,
+    isrightclickuse BOOLEAN,
     isshouldclose BOOLEAN,
     description VARCHAR(255)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
