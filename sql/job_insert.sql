@@ -1,13 +1,13 @@
 USE dgcore;
 
 INSERT INTO job (id, event, label, defaultDuty, offDuty) VALUES
-('53cb9e57-60bb-45ef-a5bc-8d4b911aa6a3', 'DGCore:Function:unemployed', '市民', TRUE, FALSE),
-('30b2d44f-8cf5-4ecd-9623-1542f05a3bad', 'DGCore:Function:police', '警察', TRUE, FALSE),
-('67886d6f-fc73-427e-9a11-6faec1cbb1e7', 'DGCore:Function:ambulance', '救急隊', TRUE, FALSE),
-('1a47ee0e-369f-4f86-abb1-bf083c4849d8', 'DGCore:Function:realestate', '不動産', TRUE, FALSE),
-('34ac0a4e-cfd8-4f28-8689-e4e23ab45751', 'DGCore:Function:taxi', 'タクシー', TRUE, FALSE),
-('bef0fa0a-0456-48e6-8e4c-4975bda6377a', 'DGCore:Function:cardealer', 'カーディーラー', TRUE, FALSE),
-('0b6feee5-2555-47c4-939b-7d618398ac9b', 'DGCore:Function:mechanic', '整備工場', TRUE, FALSE);
+('53cb9e57-60bb-45ef-a5bc-8d4b911aa6a3', 'Unemployed', '市民', TRUE, FALSE),
+('30b2d44f-8cf5-4ecd-9623-1542f05a3bad', 'Police', '警察', TRUE, FALSE),
+('67886d6f-fc73-427e-9a11-6faec1cbb1e7', 'Ambulance', '救急隊', TRUE, FALSE),
+('1a47ee0e-369f-4f86-abb1-bf083c4849d8', 'RealEstate', '不動産', TRUE, FALSE),
+('34ac0a4e-cfd8-4f28-8689-e4e23ab45751', 'Taxi', 'タクシー', TRUE, FALSE),
+('bef0fa0a-0456-48e6-8e4c-4975bda6377a', 'CarDealer', 'カーディーラー', TRUE, FALSE),
+('0b6feee5-2555-47c4-939b-7d618398ac9b', 'Mechanic', '整備工場', TRUE, FALSE);
 
 INSERT INTO job_grade (id, job_id, label, payment) VALUES 
 ('66870BA7-B661-41C4-8212-EAB9F949BDA9', '53cb9e57-60bb-45ef-a5bc-8d4b911aa6a3', 0, 'フリーランス', 50, FALSE),

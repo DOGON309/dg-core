@@ -86,6 +86,17 @@ function DGModel.PlayerData(playerData)
         }
     end
 
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.firstname,
+            self.lastname,
+            self.birthday,
+            self.gender,
+            self.nationality,
+        }
+    end
+
     return self
 end
 
@@ -116,6 +127,22 @@ function DGModel.PlayerStatus(playerStatus)
             self.istracker,
             self.isinjail,
             self.id
+        }
+    end
+
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.player_id,
+            self.hunger,
+            self.thirst,
+            self.stress,
+            self.isdead,
+            self.iscrippling,
+            self.armor,
+            self.ishandcuff,
+            self.istracker,
+            self.isinjail
         }
     end
 
@@ -176,6 +203,16 @@ function DGModel.PlayerItem(playerItem)
         }
     end
 
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.player_id,
+            self.item_id,
+            self.quantity,
+            self.isjail
+        }
+    end
+
     return self
 end
 
@@ -186,6 +223,23 @@ function DGModel.PlayerWallet(playerWallet)
     self.player_id = playerWallet.player_id
     self.cash = playerWallet.cash
     self.crypto = playerWallet.crypto
+
+    function self:toUpdateArray()
+        return {
+            self.cash,
+            self.crypto,
+            self.id
+        }
+    end
+
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.player_id,
+            self.cash,
+            self.crypto
+        }
+    end
 
     return self
 end
@@ -213,6 +267,16 @@ function DGModel.PlayerBank(playerBank)
             self.account_number,
             self.balance,
             self.id
+        }
+    end
+
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.player_id,
+            self.name,
+            self.account_number,
+            self.balance
         }
     end
 
@@ -256,6 +320,15 @@ function DGModel.PlayerJob(playerJob)
         }
     end
 
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.player_id,
+            self.job_id,
+            self.job_grade_id
+        }
+    end
+
     return self
 end
 
@@ -280,6 +353,15 @@ function DGModel.PlayerGang(playerGang)
             self.gang_id,
             self.gang_grade_id,
             self.id
+        }
+    end
+
+    function self:toInsertArray()
+        return {
+            self.id,
+            self.player_id,
+            self.gang_id,
+            self.gang_grade_id
         }
     end
 
