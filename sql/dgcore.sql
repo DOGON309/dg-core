@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS  player_item (
     id VARCHAR(36) PRIMARY KEY,
     player_id VARCHAR(36) REFERENCES player(id),
     item_id VARCHAR(36) REFERENCES item(id),
+    slot INT,
     quantity INT,
     isjail BOOLEAN
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

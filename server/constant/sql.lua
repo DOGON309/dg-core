@@ -93,8 +93,8 @@ DGCore.Constant.Queries = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerItem),
         SelectJoinItemByPlayerId = string.format("SELECT pi.*, i.*, pis.id AS pis_id, pis.durability AS pis_durability, pis.is_equipped AS pis_is_equipped, pis.use_count AS pis_use_count FROM %s pi JOIN %s i ON pi.item_id = i.id LEFT JOIN %s pis ON pi.id = pis.player_item_id WHERE pi.player_id = ?", DGCore.Constant.Tables.PlayerItem, DGCore.Constant.Tables.Item, DGCore.Constant.Tables.PlayerItemStatus),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerItem),
-        Insert = string.format("INSERT INTO %s (id, player_id, item_id, quantity, isjail) VALUES (?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerItem),
-        Update = string.format("UPDATE %s SET quantity = ?, isjail = ? WHERE id = ?", DGCore.Constant.Tables.PlayerItem),
+        Insert = string.format("INSERT INTO %s (id, player_id, item_id, slot, quantity, isjail) VALUES (?, ?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerItem),
+        Update = string.format("UPDATE %s SET slot = ?, quantity = ?, isjail = ? WHERE id = ?", DGCore.Constant.Tables.PlayerItem),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerItem),
     },
     PlayerItemStatus = {

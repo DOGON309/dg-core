@@ -166,6 +166,7 @@ function DGModel.PlayerItem(playerItem)
     self.id = playerItem.id
     self.player_id = playerItem.player_id
     self.item_id = playerItem.item_id
+    self.slot = playerItem.slot
     self.quantity = playerItem.quantity
     self.isjail = playerItem.isjail
 
@@ -190,6 +191,7 @@ function DGModel.PlayerItem(playerItem)
 
     function self:toUpdateArray()
         return {
+            self.slot,
             self.quantity,
             self.isjail,
             self.id
@@ -210,6 +212,7 @@ function DGModel.PlayerItem(playerItem)
             self.id,
             self.player_id,
             self.item_id,
+            self.slot,
             self.quantity,
             self.isjail
         }
