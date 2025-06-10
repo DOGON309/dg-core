@@ -22,3 +22,5 @@ end
 function DGCore.Database.User.insert(user)
     return DGDB.insert(DGCore.Constant.Queries.User.Insert, user:toInsertArray())
 end
+
+return DGCore.Database.User

@@ -1,5 +1,5 @@
 -- FiveMのイベント
-DGCore.Database.User = require('db.user');
+DGCore.Database.User = require('@dg-core/server/db/user');
 
 -- リソースが起動しようとした時に発火するイベント
 AddEventHandler('onResourceStarting', function(resourceName)
@@ -36,14 +36,14 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     local userData = DGCore.Database.User.selectbyrockstartid(rockstartid)
     if not userData then
         -- 初めてサーバーに参加ひと
-        userData = {
+        userData = DGModel.User({
             id = DGCore.User.GenerateId(),
             rockstartid = rockstartid,
             is_admin = 0,
             is_ban = 0,
             ban_reason = "",
             is_whitelist = 0
-        }
+        })
         local id = DGCore.Database.User.insert(userData)
         userData = {id, rockstartid, is_admin = 0, is_ban = 0, ban_reason = "", is_whitelist = 0}
     end

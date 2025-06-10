@@ -5,8 +5,8 @@ DGCore.Database.Player = {}
 DGCore.Database.PlayerStatus = {}
 DGCore.Database.PlayerItems = {}
 DGCore.Database.PlayerWallet = {}
-DGCore.Database.PlayerBank = {}
-DGCore.Database.PlayerJob = {}
+DGCore.Database.PlayerBanks = {}
+DGCore.Database.PlayerJobs = {}
 DGCore.Database.PlayerGang = {}
 
 function DGCore.Database.Player.exists(playerId)
