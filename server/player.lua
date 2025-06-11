@@ -4,17 +4,17 @@ DGCore.Player = {}
 
 -- @playerId プレイヤーのUUID
 function DGCore.Player.Load(playerId)
-    local playerData = DGCore.Database.Player.fetch(playerId)
+    local playerData = DGCore.Database.Player.SelectById(playerId)
     if not playerData then return nil end
 
-    local playerStatus = DGCore.Database.PlayerStatus.fetch(playerId)
+    local playerStatus = DGCore.Database.PlayerStatus.SelectJoinStatusByPlayerId(playerId)
     if not playerStatus then return nil end
 
-    local playerItems = DGCore.Database.PlayerItems.fetch(playerId) or {}
-    local playerWallet = DGCore.Database.PlayerWallet.fetch(playerId) or {}
-    local playerBanks = DGCore.Database.PlayerBank.fetch(playerId) or {}
-    local playerJobs = DGCore.Database.PlayerJob.fetch(playerId) or {}
-    local playerGang = DGCore.Database.PlayerGang.fetch(playerId) or {}
+    local playerItems = DGCore.Database.PlayerItems.SelectJoinItemByPlayerId(playerId) or {}
+    local playerWallet = DGCore.Database.PlayerWallet.SelectByPlayerId(playerId) or {}
+    local playerBanks = DGCore.Database.PlayerBanks.SelectByPlayerId(playerId) or {}
+    local playerJobs = DGCore.Database.PlayerJobs.SelectJoinJobByPlayerId(playerId) or {}
+    local playerGang = DGCore.Database.PlayerGang.SelectJoinGangByPlayerId(playerId) or {}
 
     local player = DGModel.Player(
         DGModel.PlayerData(playerData),
@@ -31,42 +31,43 @@ end
 
 function DGCore.Player.GeneratePlayerId()
     local id = DGCore.Function.GenerateUUID()
-    local result = MySQL.prepare.await(DGCore.Constant.Queries.Player.Exists, { id })
+    local result = DGCore.Database.Player.Exists(id)
+    if DGConfig.Debug == 1 then print(result) end -- デバッグ出力
     if result == 0 then return id end
     return DGCore.Player.GeneratePlayerId()
 end
 
 function DGCore.Player.GeneratePlayerStatusId()
     local id = DGCore.Function.GenerateUUID()
-    local result = MySQL.prepare.await(DGCore.Constant.Queries.PlayerStatus.Exists, { id })
+    local result = DGCore.Database.PlayerStatus.Exists(id)
     if result == 0 then return id end
     return DGCore.Player.GeneratePlayerStatusId()
 end
 
 function DGCore.Player.GenerateWalletId()
     local id = DGCore.Function.GenerateUUID()
-    local result = MySQL.prepare.await(DGCore.Constant.Queries.PlayerWallet.Exists, { id })
+    local result = DGCore.Database.PlayerItems.Exists(id)
     if result == 0 then return id end
     return DGCore.Player.GenerateWalletId()
 end
 
 function DGCore.Player.GenerateBankAccountNumber()
     local number = string.format("%06d", math.random(0, 999999))
-    local result = MySQL.prepare.await(DGCore.Constant.Queries.PlayerBank.ExistsAccountNumber, { number })
+    local result = DGCore.Database.PlayerBanks.ExistsByAccountNumber(number)
     if result == 0 then return number end
     return DGCore.Player.GenerateBankAccountNumber()
 end
 
 function DGCore.Player.GeneratePlayerJobId()
     local id = DGCore.Function.GenerateUUID()
-    local result = MySQL.prepare.await(DGCore.Constant.Queries.PlayerJob.Exists, { id })
+    local result = DGCore.Database.PlayerJobs.Exists(id)
     if result == 0 then return id end
     return DGCore.Player.GeneratePlayerJobId()
 end
 
 function DGCore.Player.GeneratePlayerGangId()
     local id = DGCore.Function.GenerateUUID()
-    local result = MySQL.prepare.await(DGCore.Constant.Queries.PlayerGang.Exists, { id })
+    local result = DGCore.Database.PlayerGang.Exists(id)
     if result == 0 then return id end
     return DGCore.Player.GeneratePlayerGangId()
 end

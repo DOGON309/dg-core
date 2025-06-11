@@ -116,7 +116,7 @@ DGCore.Constant.Queries = {
         SelectByPlayerId = string.format("SELECT * FROM %s WHERE player_id = ?", DGCore.Constant.Tables.PlayerBank),
         SelectJoinBankByPlayerId = string.format("SELECT pb.* FROM %s p LEFT JOIN %s pb ON p.id = pb.player_id WHERE p.id = ?", DGCore.Constant.Tables.Player, DGCore.Constant.Tables.PlayerBank),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerBank),
-        ExistsAccountNumber = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE account_number = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerBank),
+        ExistsByAccountNumber = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE account_number = ?) AS uniqueCheck", DGCore.Constant.Tables.PlayerBank),
         Insert = string.format("INSERT INTO %s (id, player_id, name, account_number, balance) VALUES (?, ?, ?, ?, ?)", DGCore.Constant.Tables.PlayerBank),
         Update = string.format("UPDATE %s SET name = ?, account_number = ?, balance = ? WHERE id = ?", DGCore.Constant.Tables.PlayerBank),
         Delete = string.format("DELETE FROM %s WHERE id = ?", DGCore.Constant.Tables.PlayerBank),
