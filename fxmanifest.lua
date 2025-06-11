@@ -16,6 +16,7 @@ client_scripts {
 -- サーバーに読み込まれるファイル
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
+    'config.lua',
     'server/*',
     'server/constant/*',
     'server/db/*',

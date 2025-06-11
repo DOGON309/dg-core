@@ -50,17 +50,18 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     local user = DGModel.User(userData)
 
     -- 管理者チェック
-    if not user.is_admin and DGConfig.Server.Closed and not IsPlayerAceAllowed(src, "dgcore.admin") then
+    if DGConfig.Server.Closed and user.is_admin and not IsPlayerAceAllowed(src, "dgcore.admin") then
         return deferrals.done("メンテナンス中のため管理者のみ参加できます")
     end
 
     -- ホワイトリスト確認
-    if DGConfig.Server.Whitelist and not user.is_whitelist then
+    if DGConfig.Server.Whitelist and user.is_whitelist == 0 then
         return deferrals.done("ホワイトリストに登録されていません")
     end
 
+    print(user.is_ban)
     -- Ban確認
-    if user.is_ban then
+    if user.is_ban == 1 then
         return deferrals.done(string.format("あなたはBanされています。理由：%s", user.ban_reason))
     end
 
