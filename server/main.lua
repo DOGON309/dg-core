@@ -1,6 +1,9 @@
 -- FiveMのイベント
 -- DGCore.Database.User = require('@dg-core/server/db/user');
 
+DGCore.Users = {}
+DGCore.Players = {}
+
 -- リソースが起動しようとした時に発火するイベント
 AddEventHandler('onResourceStarting', function(resourceName)
     if GetCurrentResourceName() ~= resourceName then return end
@@ -26,6 +29,7 @@ end)
 
 AddEventHandler('playerConnecting', function (name, _, deferrals)
     local src = source
+    print(src)
     deferrals.defer()
     Wait(0)
 
@@ -59,12 +63,12 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
         return deferrals.done("ホワイトリストに登録されていません")
     end
 
-    print(user.is_ban)
     -- Ban確認
     if user.is_ban == 1 then
         return deferrals.done(string.format("あなたはBanされています。理由：%s", user.ban_reason))
     end
 
+    DGCore.Users[src] = user
     -- セキュリティクリア
     deferrals.done()
     TriggerClientEvent("do-core:Player:Loaded", src, rockstartid)

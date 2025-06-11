@@ -17,6 +17,8 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
     self.birthday = playerData.birthday
     self.gender = playerData.gender
     self.nationality = playerData.nationality
+    self.slot = playerData.slot
+    self.is_deleted = playerData.is_deleted
 
     self.status = playerStatus
     self.items = playerItems
@@ -70,6 +72,8 @@ function DGModel.PlayerData(playerData)
     self.birthday = playerData.birthday
     self.gender = playerData.gender
     self.nationality = playerData.nationality
+    self.slot = playerData.slot
+    self.is_deleted = playerData.is_deleted
 
     function self:toUpdateArray()
         return {
@@ -78,6 +82,8 @@ function DGModel.PlayerData(playerData)
             self.birthday,
             self.gender,
             self.nationality,
+            self.slot,
+            self.is_deleted,
             self.id
         }
     end
@@ -90,6 +96,8 @@ function DGModel.PlayerData(playerData)
             self.birthday,
             self.gender,
             self.nationality,
+            self.slot,
+            self.is_deleted
         }
     end
 
@@ -239,8 +247,6 @@ function DGModel.PlayerItem(playerItem)
             is_equipped = self.pis_is_equipped
         }
     end
-
-    return self
 end
 
 DGModel.PlayerWallet = {}

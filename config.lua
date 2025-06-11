@@ -64,3 +64,5 @@ DGConfig.Notify.VariantDefinitions = {
         icon = 'fas fa-ambulance'
     }
 }
+
+DGConfig.Debug = 1

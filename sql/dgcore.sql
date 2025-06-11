@@ -16,7 +16,9 @@ CREATE TABLE IF NOT EXISTS  player (
     lastname VARCHAR(255),
     birthday VARCHAR(255),
     gender VARCHAR(255),
-    nationality VARCHAR(255)
+    nationality VARCHAR(255),
+    slot INT DEFAULT 1,
+    is_deleted BOOLEAN DEFAULT FALSE
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS  job (
