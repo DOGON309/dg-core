@@ -38,7 +38,7 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
         -- 初めてサーバーに参加ひと
         userData = DGModel.User({
             id = DGCore.User.GenerateId(),
-            rockstartid = rockstartid,
+            rockstart_id = rockstartid,
             is_admin = 0,
             is_ban = 0,
             ban_reason = "",
