@@ -29,6 +29,9 @@ ui_page 'ui/index.html'
 -- クライアント側がダウンロードするファイル
 files {
     'ui/index.html',
+    'ui/css/style.css',
+    'ui/js/app.js',
+    'ui/images/*.png'
 }
 
 -- このリソースを読み込む前に読み込むリソース
