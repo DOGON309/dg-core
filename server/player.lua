@@ -3,7 +3,8 @@ DGCore = DGCore or {}
 DGCore.Player = {}
 
 -- @playerData {id, firstname, lastname, ...}
-function DGCore.Player.Create(playerData)
+function DGCore.Player.Create(data)
+    local playerData = DGModel.PlayerData(data)
     local playerStatus = DGModel.PlayerStatus({
         id = DGCore.Player.GeneratePlayerStatusId(),
         player_id = playerData.id,

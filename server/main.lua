@@ -71,5 +71,7 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     DGCore.Users[src] = user
     -- セキュリティクリア
     deferrals.done()
-    TriggerClientEvent("do-core:Player:Loaded", src, rockstartid)
+
+    local characters = DGCore.Database.Player.SelectByRockStartId(rockstartid)
+    TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
 end)
