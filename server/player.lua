@@ -2,6 +2,37 @@ DGCore = DGCore or {}
 
 DGCore.Player = {}
 
+-- @playerData {id, firstname, lastname, ...}
+function DGCore.Player.Create(playerData)
+    local playerStatus = DGModel.PlayerStatus({
+        id = DGCore.Player.GeneratePlayerStatusId(),
+        player_id = playerData.id,
+        hunger = 100,
+        thirst = 0,
+        stress = 0,
+        isdead = 0,
+        iscrippling = 0,
+        armor = 0,
+        ishandcuff = 0,
+        istracker = 0,
+        isinjail = 0
+    })
+    local playerItems = {}
+    local playerWallet = {
+        id = DGCore.Player.GenerateWalletId(),
+        player_id = playerData.id,
+        cash = DGConfig.Money.DefaultMoney.cash,
+        crypto = DGConfig.Money.DefaultMoney.crypto
+    }
+    local playerBanks = {}
+    local playerJobs = {}
+    local playerGang = {}
+
+    local player = DGModel.Player(playerData, playerStatus, playerItems, playerWallet, playerBanks, playerJobs, playerGang)
+
+    player:create()
+end
+
 -- @playerId プレイヤーのUUID
 function DGCore.Player.Load(playerId)
     local playerData = DGCore.Database.Player.SelectById(playerId)

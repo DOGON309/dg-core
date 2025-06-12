@@ -32,6 +32,7 @@ DGCore.Constant.Queries = {
     },
     Player = {
         SelectById = string.format("SELECT * FROM %s WHERE id = ?", DGCore.Constant.Tables.Player),
+        SelectByRockStartId = string.format("SELECT * FROM %s WHERE rockstart_id = ?", DGCore.Constant.Tables.Player),
         Exists = string.format("SELECT EXISTS(SELECT 1 FROM %s WHERE id = ?) AS uniqueCheck", DGCore.Constant.Tables.playerStatus),
         Insert = string.format("INSERT INTO %s (id, firstname, lastname, birthday, gender, nationality, slot, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", DGCore.Constant.Tables.Player),
         Update = string.format("UPDATE %s SET firstname = ?, lastname = ?, birthday = ?, gender = ?, nationality = ?, slot = ?, is_deleted = ? WHERE id = ?", DGCore.Constant.Tables.Player),

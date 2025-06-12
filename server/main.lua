@@ -37,7 +37,7 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     local rockstartid = GetPlayerIdentifierByType(src, 'license')
 
     -- userテーブル存在確認
-    local userData = DGCore.Database.User.selectbyrockstartid(rockstartid)
+    local userData = DGCore.Database.User.SelectByRockStartId(rockstartid)
     if not userData then
         -- 初めてサーバーに参加ひと
         userData = DGModel.User({

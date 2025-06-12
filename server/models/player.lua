@@ -48,14 +48,24 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
         }
     end
 
+    function self:create()
+        DGCore.Database.Player.Insert(playerData)
+        DGCore.Database.PlayerStatus.Insert(playerStatus)
+        DGCore.Database.PlayerItems.Insert(playerItems)
+        DGCore.Database.PlayerWallet.Insert(playerWallet)
+        DGCore.Database.PlayerBanks.Insert(playerBanks)
+        DGCore.Database.PlayerJobs.Insert(playerJobs)
+        DGCore.Database.PlayerGang.Insert(playerGang)
+    end
+
     function self:save()
-        DGCore.Database.Player.update(self)
-        DGCore.Database.PlayerStatus.update(self.status)
-        DGCore.Database.PlayerItems.update(self.items)
-        DGCore.Database.PlayerWallet.update(self.wallet)
-        DGCore.Database.PlayerBanks.update(self.banks)
-        DGCore.Database.PlayerJobs.update(self.jobs)
-        DGCore.Database.PlayerGang.update(self.gang)
+        DGCore.Database.Player.Update(self)
+        DGCore.Database.PlayerStatus.Update(self.status)
+        DGCore.Database.PlayerItems.Update(self.items)
+        DGCore.Database.PlayerWallet.Update(self.wallet)
+        DGCore.Database.PlayerBanks.Update(self.banks)
+        DGCore.Database.PlayerJobs.Update(self.jobs)
+        DGCore.Database.PlayerGang.Update(self.gang)
     end
 
     return self
