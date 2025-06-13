@@ -2,9 +2,21 @@ DGCore = DGCore or {}
 
 DGCore.Player = {}
 
--- @playerData {id, firstname, lastname, ...}
-function DGCore.Player.Create(data)
-    local playerData = DGModel.PlayerData(data)
+-- @playerData {firstname, lastname, gender, nationality}
+function DGCore.Player.Create(data, user)
+    local characters = DGCore.Database.Player.SelectByUserId(user.id)
+    if #characters >= 3 then return end
+
+    local playerData = DGModel.PlayerData({
+        id = DGCore.Player.GeneratePlayerId(),
+        firstname = data.firstname,
+        lastname = data.lastname,
+        birthday = data.birthday,
+        gender = data.gender,
+        nationality = data.nationality,
+        slot = #characters + 1,
+        is_dead = 0
+    })
     local playerStatus = DGModel.PlayerStatus({
         id = DGCore.Player.GeneratePlayerStatusId(),
         player_id = playerData.id,
