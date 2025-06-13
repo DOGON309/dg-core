@@ -76,12 +76,20 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.boxShadow = '0 12px 40px rgba(0, 255, 204, 0.4)';
         });
     });
+    
+    const createBackBtn = document.querySelector('.character-back-button');
+    if (createBackBtn) {
+        createBackBtn.addEventListener('click', function() {
+            showSection("character");
+        });
+    }
 
     // Create character button
     const createBtn = document.querySelector('.create-character');
     if (createBtn) {
         createBtn.addEventListener('click', function() {
             // キャラクター作成画面への遷移処理
+            showSection("character-creation");
         });
     }
 
@@ -348,12 +356,7 @@ window.addEventListener("message", (event) => {
     if (data.action === "showCharacter") {
         console.log("showCharacterが呼び出されました");
 
-        document.querySelector('.nav-container').style.display = "none";
-        document.querySelector('.ui-section').forEach(s => s.classList.remove('active'));
-        document.getElementById('character').classList.add("active");
-
         renderCharacterList(data.characters);
         showSection('character');
     }
 })
-

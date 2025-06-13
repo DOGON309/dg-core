@@ -68,11 +68,19 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     if user.is_ban == 1 then
         return deferrals.done(string.format("あなたはBanされています。理由：%s", user.ban_reason))
     end
-
-    DGCore.Users[src] = user
     -- セキュリティクリア
     deferrals.done()
+end)
 
-    local characters = DGCore.Database.Player.SelectById(user.id)
+RegisterNetEvent("dg-core:Server:playerReady", function ()
+    local src = source
+    local rockstart_id = GetPlayerIdentifierByType(src, 'license')
+
+    local user = DGCore.Database.User.SelectByRockStartId(rockstart_id)
+
+    local characters = DGCore.Database.Player.SelectByUserId(user.id) or {}
+
     TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
+
+    DGCore.Users[src] = user
 end)
