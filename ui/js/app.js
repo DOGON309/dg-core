@@ -288,7 +288,7 @@ function handleCharacterCreation(event) {
     }
 
     // Success message and return to character selection
-    alert(`キャラクター「${formData.lastName} ${formData.firstName}」が作成されました！`);
+    // alert(`キャラクター「${formData.lastName} ${formData.firstName}」が作成されました！`);
     
     // Reset form
     document.querySelector('.character-form').reset();
