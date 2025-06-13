@@ -68,6 +68,7 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     if user.is_ban == 1 then
         return deferrals.done(string.format("あなたはBanされています。理由：%s", user.ban_reason))
     end
+    
     -- セキュリティクリア
     deferrals.done()
 end)

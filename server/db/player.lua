@@ -17,7 +17,7 @@ function DGCore.Database.Player.SelectById(playerId)
     return DGDB.fetch(DGCore.Constant.Queries.Player.SelectById, { playerId })
 end
 
-function DGCore.Database.Player.SelectByRockStartId(userId)
+function DGCore.Database.Player.SelectByUserId(userId)
     return DGDB.fetch(DGCore.Constant.Queries.Player.SelectByUserId, { userId })
 end
 
