@@ -82,8 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (createBtn) {
         createBtn.addEventListener('click', function() {
             // キャラクター作成画面への遷移処理
-            showSection('character-creation');
-            initializeCharacterCreation();
         });
     }
 
@@ -353,6 +351,7 @@ window.addEventListener("message", (event) => {
         document.getElementById('character').classList.add("active");
 
         renderCharacterList(data.characters);
+        showSection('character');
     }
 })
 
