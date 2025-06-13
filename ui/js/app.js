@@ -346,6 +346,8 @@ window.addEventListener("message", (event) => {
 
     // 
     if (data.action === "showCharacter") {
+        console.log("showCharacterが呼び出されました");
+
         document.querySelector('.nav-container').style.display = "none";
         document.querySelector('.ui-section').forEach(s => s.classList.remove('active'));
         document.getElementById('character').classList.add("active");

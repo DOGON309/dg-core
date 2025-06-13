@@ -1,6 +1,7 @@
 -- FiveMのイベント
 -- DGCore.Database.User = require('@dg-core/server/db/user');
 
+DGCore = DGCore or {}
 DGCore.Users = {}
 DGCore.Players = {}
 
@@ -72,6 +73,6 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
     -- セキュリティクリア
     deferrals.done()
 
-    local characters = DGCore.Database.Player.SelectByRockStartId(rockstartid)
+    local characters = DGCore.Database.Player.SelectById(user.id)
     TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
 end)
