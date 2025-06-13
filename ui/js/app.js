@@ -339,6 +339,10 @@ function renderCharacterList(characters) {
     if (characters.length < 3) {
         const createCard = document.createElement("div");
         createCard.className = "character-card glass-panel create-character";
+        createCard.onclick = function() {
+            showSection("character-creation");
+            initializeCharacterCreation();
+        }
         createCard.innerHTML = `
             <div>
                 <div style="font-size: 48px; margin-bottom: 16px;">+</div>
