@@ -304,7 +304,7 @@ function handleCharacterCreation(event) {
     fetch('https://dg-core/createCharacter', {
         body: JSON.stringify(formData),
         headers: {
-            "Content-Type": "application/json; charset=UTF8",
+            "Content-Type": "application/json; charset=UTF-8",
         },
         method: "POST"
     });

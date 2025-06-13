@@ -21,7 +21,8 @@ server_scripts {
     'server/constant/*',
     'server/db/*',
     'server/models/*',
-    'server/lib/*'
+    'server/lib/*',
+    'server/event/*'
 }
 
 ui_page 'ui/index.html'
