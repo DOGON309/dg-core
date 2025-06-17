@@ -24,7 +24,12 @@ end)
 RegisterNetEvent("dg-core:Server:deleteCharacter")
 AddEventHandler("dg-core:Server:deleteCharacter", function(data)
     local src = source
+    local user = DGCore.Users[src]
     local player = DGModel.PlayerData(DGCore.Database.Player.SelectById(data.user_id))
 
     DGCore.Database.Player.Delete(player.id)
+
+    local characters = DGCore.Database.Player.SelectByUserId(user.id)
+
+    TriggerClientEvent("dg-core:Server:showCharacter", src, characters)
 end)
