@@ -53,9 +53,6 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
         DGCore.Database.PlayerStatus.Insert(playerStatus)
         DGCore.Database.PlayerItems.Insert(playerItems)
         DGCore.Database.PlayerWallet.Insert(playerWallet)
-        DGCore.Database.PlayerBanks.Insert(playerBanks)
-        DGCore.Database.PlayerJobs.Insert(playerJobs)
-        DGCore.Database.PlayerGang.Insert(playerGang)
     end
 
     function self:save()

@@ -3,10 +3,10 @@ USE dgcore;
 CREATE TABLE IF NOT EXISTS user (
     id VARCHAR(36) PRIMARY KEY,
     rockstart_id VARCHAR(255) NOT NULL,
-    is_admin BOOLEAN DEFAULT NULL,
-    is_ban BOOLEAN DEFAULT NULL,
+    is_admin BOOLEAN DEFAULT 0,
+    is_ban BOOLEAN DEFAULT 0,
     ban_reason VARCHAR(255) DEFAULT NULL,
-    is_whitelist BOOLEAN DEFAULT NULL
+    is_whitelist BOOLEAN DEFAULT 0
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS  player (
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS  item (
 
 CREATE TABLE IF NOT EXISTS  weapon (
     id VARCHAR(36) PRIMARY KEY,
-    item_id VARCHAR(36) UNIQUE REFERENCES item(id),
+    item_id VARCHAR(36) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE,
     damage INT,
     recoil FLOAT,
     firerate FLOAT,

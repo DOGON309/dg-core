@@ -9,7 +9,6 @@ AddEventHandler("dg-core:Client:showCharacter", function (characters)
 end)
 
 RegisterNUICallback("createCharacter", function (data, cb)
-    print("createCharacter")
     TriggerServerEvent("dg-core:Server:createCharacter", data)
     cb({})
 end)

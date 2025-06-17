@@ -30,7 +30,6 @@ end)
 
 AddEventHandler('playerConnecting', function (name, _, deferrals)
     local src = source
-    print(src)
     deferrals.defer()
     Wait(0)
 
@@ -84,4 +83,7 @@ RegisterNetEvent("dg-core:Server:playerReady", function ()
     TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
 
     DGCore.Users[src] = user
+
+    -- デバッグ
+    if DGConfig.Debug == 1 then for i, d in ipairs(DGCore.Users) do print(string.format('%s: %s', i, d)) end end
 end)

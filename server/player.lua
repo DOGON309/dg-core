@@ -9,13 +9,14 @@ function DGCore.Player.Create(data, user)
 
     local playerData = DGModel.PlayerData({
         id = DGCore.Player.GeneratePlayerId(),
+        user_id = user.rockstart_id,
         firstname = data.firstname,
         lastname = data.lastname,
         birthday = data.birthday,
         gender = data.gender,
         nationality = data.nationality,
         slot = #characters + 1,
-        is_dead = 0
+        is_deleted = 0
     })
     local playerStatus = DGModel.PlayerStatus({
         id = DGCore.Player.GeneratePlayerStatusId(),
@@ -31,12 +32,12 @@ function DGCore.Player.Create(data, user)
         isinjail = 0
     })
     local playerItems = {}
-    local playerWallet = {
+    local playerWallet = DGModel.PlayerWallet({
         id = DGCore.Player.GenerateWalletId(),
         player_id = playerData.id,
         cash = DGConfig.Money.DefaultMoney.cash,
         crypto = DGConfig.Money.DefaultMoney.crypto
-    }
+    })
     local playerBanks = {}
     local playerJobs = {}
     local playerGang = {}

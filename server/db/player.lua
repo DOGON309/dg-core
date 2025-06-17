@@ -14,11 +14,11 @@ function DGCore.Database.Player.Exists(playerId)
 end
 
 function DGCore.Database.Player.SelectById(playerId)
-    return DGDB.fetch(DGCore.Constant.Queries.Player.SelectById, { playerId })
+    return DGDB.fetch(DGCore.Constant.Queries.Player.SelectById, { playerId }) or {}
 end
 
 function DGCore.Database.Player.SelectByUserId(userId)
-    return DGDB.fetch(DGCore.Constant.Queries.Player.SelectByUserId, { userId })
+    return DGDB.fetch(DGCore.Constant.Queries.Player.SelectByUserId, { userId }) or {}
 end
 
 function DGCore.Database.Player.Update(playerData)
@@ -34,7 +34,7 @@ function DGCore.Database.PlayerStatus.Exists(id)
 end
 
 function DGCore.Database.PlayerStatus.SelectJoinStatusByPlayerId(playerId)
-    return DGDB.fetch(DGCore.Constant.Queries.PlayerStatus.SelectJoinStatusByPlayerId, { playerId })
+    return DGDB.fetch(DGCore.Constant.Queries.PlayerStatus.SelectJoinStatusByPlayerId, { playerId }) or {}
 end
 
 function DGCore.Database.PlayerStatus.Update(playerStatus)
@@ -50,7 +50,7 @@ function DGCore.Database.PlayerItems.Exists(id)
 end
 
 function DGCore.Database.PlayerItems.SelectJoinItemByPlayerId(playerId)
-    return DGDB.fetch(DGCore.Constant.Queries.PlayerItem.SelectJoinItemByPlayerId, { playerId })
+    return DGDB.fetch(DGCore.Constant.Queries.PlayerItem.SelectJoinItemByPlayerId, { playerId }) or {}
 end
 
 function DGCore.Database.PlayerItems.Update(playerItems)
