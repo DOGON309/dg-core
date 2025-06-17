@@ -29,6 +29,10 @@ function DGCore.Database.Player.Insert(playerData)
     DGDB.insert(DGCore.Constant.Queries.Player.Insert, playerData:toInsertArray())
 end
 
+function DGCore.Database.Player.Delete(playerId)
+    DGDB.update(DGCore.Constant.Queries.Player.Delete, { playerId })
+end
+
 function DGCore.Database.PlayerStatus.Exists(id)
     return DGDB.fetch(DGCore.Constant.Queries.PlayerStatus.Exists, { id })
 end
