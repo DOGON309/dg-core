@@ -48,7 +48,7 @@ AddEventHandler('playerConnecting', function (name, _, deferrals)
             ban_reason = "",
             is_whitelist = 0
         })
-        local id = DGCore.Database.User.insert(userData)
+        local id = DGCore.Database.User.Insert(userData)
         userData = {id, rockstartid, is_admin = 0, is_ban = 0, ban_reason = "", is_whitelist = 0}
     end
     local user = DGModel.User(userData)
