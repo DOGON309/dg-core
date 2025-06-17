@@ -78,6 +78,8 @@ RegisterNetEvent("dg-core:Server:playerReady", function ()
 
     local user = DGCore.Database.User.SelectByRockStartId(rockstart_id)
 
+    print(string.format('dg-core:Server:playerReady: %s', rockstart_id))
+    print(string.format('dg-core:Server:playerReady: %s', user.id))
     local characters = DGCore.Database.Player.SelectByUserId(user.id)
 
     -- デバッグ

@@ -8,7 +8,7 @@ function DGCore.Database.User.SelectById(userid)
 end
 
 function DGCore.Database.User.SelectByRockStartId(rockstartid)
-    return DGDB.fetch(DGCore.Constant.Queries.User.SelectByRockStartId, { rockstartid })
+    return DGDB.fetchOne(DGCore.Constant.Queries.User.SelectByRockStartId, { rockstartid })
 end
 
 function DGCore.Database.User.Exists(userId)

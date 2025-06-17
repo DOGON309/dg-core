@@ -12,11 +12,15 @@ function DGDB.fetch(query, params)
     end
 
     -- resultが一件の場合
-    if result and not result[1] then
+    if type(result) == "table" and not result[1] then
         return { result }
     end
 
     return result
+end
+
+function DGDB.fetchOne(query, params)
+    return MySQL.prepare.await(query, params)
 end
 
 function DGDB.scalar(query, params)
