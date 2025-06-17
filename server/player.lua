@@ -9,7 +9,7 @@ function DGCore.Player.Create(data, user)
 
     local playerData = DGModel.PlayerData({
         id = DGCore.Player.GeneratePlayerId(),
-        user_id = user.rockstart_id,
+        user_id = user.id,
         firstname = data.firstname,
         lastname = data.lastname,
         birthday = data.birthday,

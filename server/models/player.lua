@@ -12,6 +12,7 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
     local self = {}
 
     self.id = playerData.id
+    self.user_id = playerData.user_id
     self.firstname = playerData.firstname
     self.lastname = playerData.lastname
     self.birthday = playerData.birthday
@@ -31,27 +32,9 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
         return string.format("%s%s", self.firstname, self.lastname)
     end
 
-    function self:toTable()
-        return {
-            id = self.id,
-            firstname = self.firstname,
-            lastname = self.lastname,
-            birthday = self.birthday,
-            gender = self.gender,
-            nationality = self.nationality,
-            status = self.status,
-            items = self.items,
-            wallet = self.wallet,
-            banks = self.banks,
-            jobs = self.jobs,
-            gang = self.gang
-        }
-    end
-
     function self:create()
         DGCore.Database.Player.Insert(playerData)
         DGCore.Database.PlayerStatus.Insert(playerStatus)
-        DGCore.Database.PlayerItems.Insert(playerItems)
         DGCore.Database.PlayerWallet.Insert(playerWallet)
     end
 
@@ -74,6 +57,7 @@ function DGModel.PlayerData(playerData)
     local self = {}
 
     self.id = playerData.id
+    self.user_id = playerData.user_id
     self.firstname = playerData.firstname
     self.lastname = playerData.lastname
     self.birthday = playerData.birthday
@@ -98,6 +82,7 @@ function DGModel.PlayerData(playerData)
     function self:toInsertArray()
         return {
             self.id,
+            self.user_id,
             self.firstname,
             self.lastname,
             self.birthday,
