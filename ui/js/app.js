@@ -244,8 +244,8 @@ function updatePreview() {
     // Update preview avatar
     const previewAvatar = document.querySelector('.preview-avatar');
     if (previewAvatar) {
-        if (lastName) {
-            previewAvatar.textContent = lastName.charAt(0);
+        if (lastname) {
+            previewAvatar.textContent = lastname.charAt(0);
         } else {
             previewAvatar.textContent = '?';
         }
