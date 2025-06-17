@@ -190,8 +190,8 @@ function updateBirthDays() {
 }
 
 function updatePreview() {
-    const lastName = document.getElementById('lastName')?.value || '';
-    const firstName = document.getElementById('firstName')?.value || '';
+    const lastname = document.getElementById('lastname')?.value || '';
+    const firstname = document.getElementById('firstname')?.value || '';
     const birthYear = document.getElementById('birthYear')?.value || '';
     const birthMonth = document.getElementById('birthMonth')?.value || '';
     const birthDay = document.getElementById('birthDay')?.value || '';
@@ -201,7 +201,7 @@ function updatePreview() {
     // Update preview name
     const previewName = document.getElementById('previewName');
     if (previewName) {
-        const fullName = (lastName + ' ' + firstName).trim();
+        const fullName = (lastname + ' ' + firstname).trim();
         previewName.textContent = fullName || '未入力';
     }
 
@@ -256,8 +256,8 @@ function handleCharacterCreation(event) {
     event.preventDefault();
     
     let formData = {
-        lastName: document.getElementById('lastName').value,
-        firstName: document.getElementById('firstName').value,
+        lastname: document.getElementById('lastname').value,
+        firstname: document.getElementById('firstname').value,
         birthYear: document.getElementById('birthYear').value,
         birthMonth: document.getElementById('birthMonth').value,
         birthDay: document.getElementById('birthDay').value,
@@ -266,7 +266,7 @@ function handleCharacterCreation(event) {
     };
 
     // Validation
-    if (!formData.lastName || !formData.firstName || !formData.birthYear || 
+    if (!formData.lastname || !formData.firstname || !formData.birthYear || 
         !formData.birthMonth || !formData.birthDay || !formData.gender || !formData.nationality) {
         alert('すべての必須項目を入力してください。');
         return;
@@ -288,7 +288,7 @@ function handleCharacterCreation(event) {
     }
 
     // Success message and return to character selection
-    // alert(`キャラクター「${formData.lastName} ${formData.firstName}」が作成されました！`);
+    // alert(`キャラクター「${formData.lastname} ${formData.firstname}」が作成されました！`);
     
     // Reset form
     document.querySelector('.character-form').reset();
