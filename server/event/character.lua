@@ -31,9 +31,24 @@ AddEventHandler("dg-core:Server:deleteCharacter", function(data)
     
     local playerData = DGCore.Database.Player.SelectById(data.user_id)
 
-    DGCore.Database.Player.Delete(player.id)
+    DGCore.Database.Player.Delete(playerData.id)
 
     local characters = DGCore.Database.Player.SelectByUserId(user.id)
 
     TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
+end)
+
+RegisterNetEvent("dg-core:Server:selectCharacter")
+AddEventHandler("dg-core:Server:selectCharacter", function (data)
+    local src = source
+    local user = DGCore.Users[src]
+
+    -- デバッグ
+    if DGConfig.Debug == 1 then
+        print(string.format('dg-core:Server:selectCharacter: data.character_id: %s', data.character_id))
+    end
+
+    local character = DGCore.Player.Load(data.character_id)
+
+    TriggerClientEvent('dg-core:Client:spawnCharacter', src, character)
 end)

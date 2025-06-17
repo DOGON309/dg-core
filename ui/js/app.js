@@ -62,13 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Character card selection - イベント委譲を使用
-    document.addEventListener('click', function(e) {
+    document.addEventListener('dblclick', function(e) {
         // キャラクターカードの選択
         if (e.target.closest('.character-card:not(.create-character)')) {
-            console.log(`Character Selected!!`)
             const card = e.target.closest('.character-card');
+            const characterId = card.dataset.character_id;
             const characterCards = document.querySelectorAll('.character-card:not(.create-character)');
+
+            // デバッグ
+            console.log(`Character Select!! id: ${characterId}`);
             
             // Remove previous selection
             characterCards.forEach(c => {
@@ -78,8 +80,19 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add selection border
             card.style.border = '2px solid #00ffcc';
             card.style.boxShadow = '0 12px 40px rgba(0, 255, 204, 0.4)';
+
+            fetch("https://dg-core/selectCharacter", {
+                body: JSON.stringify({character_id: characterId}),
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8",
+                },
+                method: "POST"
+            });
         }
-        
+    });
+
+    // Character card selection - イベント委譲を使用
+    document.addEventListener('click', function(e) {
         // 削除ボタンの処理
         if (e.target.closest('.delete-character-btn')) {
             console.log("Character Delete Button Click!!")
@@ -334,6 +347,7 @@ function renderCharacterList(characters) {
     characters.forEach(character => {
         const card = document.createElement("div");
         card.className = "character-card glass-panel";
+        card.setAttribute("data-character_id", character.id);
         card.innerHTML = `
             <div class="character-avatar">${character.firstname[0]}</div>
             <div class="character-info">
