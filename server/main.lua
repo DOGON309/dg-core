@@ -78,12 +78,12 @@ RegisterNetEvent("dg-core:Server:playerReady", function ()
 
     local user = DGCore.Database.User.SelectByRockStartId(rockstart_id)
 
-    local characters = DGCore.Database.Player.SelectByUserId(user.id) or {}
+    local characters = DGCore.Database.Player.SelectByUserId(user.id)
 
     TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
 
     DGCore.Users[src] = user
 
     -- デバッグ
-    if DGConfig.Debug == 1 then for i, d in ipairs(DGCore.Users) do print(string.format('%s: %s', i, d)) end end
+    if DGConfig.Debug == 1 then for i, d in ipairs(DGCore.Users) do for key, value in ipairs(d) do print(string.format('%s: %s: %s', i, key, value)) end end end
 end)

@@ -17,13 +17,13 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
     self.lastname = playerData.lastname
     self.birthday = playerData.birthday
     self.gender = playerData.gender
+    self.cash = playerData.cash
     self.nationality = playerData.nationality
     self.slot = playerData.slot
     self.is_deleted = playerData.is_deleted
 
     self.status = playerStatus
     self.items = playerItems
-    self.wallet = playerWallet
     self.banks = playerBanks
     self.jobs = playerJobs
     self.gang = playerGang
@@ -35,7 +35,6 @@ function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, pla
     function self:create()
         DGCore.Database.Player.Insert(playerData)
         DGCore.Database.PlayerStatus.Insert(playerStatus)
-        DGCore.Database.PlayerWallet.Insert(playerWallet)
     end
 
     function self:save()
@@ -62,6 +61,7 @@ function DGModel.PlayerData(playerData)
     self.lastname = playerData.lastname
     self.birthday = playerData.birthday
     self.gender = playerData.gender
+    self.cash = playerData.cash
     self.nationality = playerData.nationality
     self.slot = playerData.slot
     self.is_deleted = playerData.is_deleted
@@ -72,6 +72,7 @@ function DGModel.PlayerData(playerData)
             self.lastname,
             self.birthday,
             self.gender,
+            self.cash,
             self.nationality,
             self.slot,
             self.is_deleted,
@@ -87,6 +88,7 @@ function DGModel.PlayerData(playerData)
             self.lastname,
             self.birthday,
             self.gender,
+            self.cash,
             self.nationality,
             self.slot,
             self.is_deleted

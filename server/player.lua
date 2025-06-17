@@ -14,6 +14,7 @@ function DGCore.Player.Create(data, user)
         lastname = data.lastname,
         birthday = data.birthday,
         gender = data.gender,
+        cash = DGConfig.Money.DefaultMoney.cash,
         nationality = data.nationality,
         slot = #characters + 1,
         is_deleted = 0
@@ -32,12 +33,7 @@ function DGCore.Player.Create(data, user)
         isinjail = 0
     })
     local playerItems = {}
-    local playerWallet = DGModel.PlayerWallet({
-        id = DGCore.Player.GenerateWalletId(),
-        player_id = playerData.id,
-        cash = DGConfig.Money.DefaultMoney.cash,
-        crypto = DGConfig.Money.DefaultMoney.crypto
-    })
+    local playerWallet = {}
     local playerBanks = {}
     local playerJobs = {}
     local playerGang = {}

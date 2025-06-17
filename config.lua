@@ -8,7 +8,7 @@ DGConfig.UpdateInterval = 5                                     -- プレイヤ�
 DGConfig.StatusInterval = 5000                                  -- プレイヤーステータスの確認頻度（ミリ秒単位）
 
 DGConfig.Money = {}
-DGConfig.Money.DefaultMoney = { cash = 500, bank = 5000, crypto = 0 } -- 最初の所持金・最初の銀行残高・最初の暗号資産
+DGConfig.Money.DefaultMoney = { cash = 500 } -- 最初の所持金
 DGConfig.Money.DontAllowMinus = { 'cash', 'crypto' }                  -- マイナスにならないお金
 DGConfig.Money.MinusLimit = -5000                                     -- マイナスの最大値
 DGConfig.Money.PayCheckTimeOut = 10                                   -- 給料が払われるタイミング

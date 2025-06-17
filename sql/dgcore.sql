@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS  player (
     lastname VARCHAR(255),
     birthday VARCHAR(255),
     gender VARCHAR(255),
+    cash INT DEFAULT 0,
     nationality VARCHAR(255),
     slot INT DEFAULT 1,
     is_deleted BOOLEAN DEFAULT FALSE
