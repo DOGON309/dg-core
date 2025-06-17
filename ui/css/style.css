@@ -182,6 +182,43 @@ body {
     background: rgba(0, 255, 204, 0.05);
 }
 
+/* Delete Character Button */
+.delete-character-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(255, 59, 48, 0.9);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.character-card:hover .delete-character-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.delete-character-btn:hover {
+    background: rgba(255, 59, 48, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.4);
+}
+
+.delete-character-btn:active {
+    transform: scale(0.95);
+}
+
 /* Inventory Grid */
 .inventory-container {
     display: grid;

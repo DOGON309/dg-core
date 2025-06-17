@@ -84,6 +84,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const characterDelBtn = document.querySelectorAll(".delete-character-btn");
+    if (characterDelBtn) {
+        characterDelBtn.forEach((btn) => {
+            btn.addEventListener('click', function() {
+                const userId = this.value;
+
+                fetch('https://dg-core/deleteCharacter', {
+                    body: JSON.stringify({user_id: userId}),
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8",
+                    },
+                    method: "POST"
+                });
+            });
+        })
+    }
+
     // Create character button
     const createBtn = document.querySelector('.create-character');
     if (createBtn) {
@@ -327,6 +344,9 @@ function renderCharacterList(characters) {
                     <span>所持金：¥${character.cash}</span>
                 </div>
             </div>
+            <button class="delete-character-btn" value=${character.id} title="キャラクターを削除">
+                <span>×</span>
+            </button>
         `;
         grid.appendChild(card);
     });
@@ -359,3 +379,14 @@ window.addEventListener("message", (event) => {
         showSection('character');
     }
 })
+
+// renderCharacterList([{
+//     'id': '1234',
+//     'firstname': '田中',
+//     'lastname': '太郎',
+//     'gender': '男性',
+//     'nationality': '日本',
+//     'slot': 1,
+//     'cash': 500,
+// }])
+// showSection('character')
