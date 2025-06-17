@@ -62,19 +62,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Character card selection
-    const characterCards = document.querySelectorAll('.character-card:not(.create-character)');
-    characterCards.forEach(card => {
-        card.addEventListener('click', function() {
+    // Character card selection - イベント委譲を使用
+    document.addEventListener('click', function(e) {
+        // キャラクターカードの選択
+        if (e.target.closest('.character-card:not(.create-character)')) {
+            console.log(`Character Selected!!`)
+            const card = e.target.closest('.character-card');
+            const characterCards = document.querySelectorAll('.character-card:not(.create-character)');
+            
             // Remove previous selection
             characterCards.forEach(c => {
                 c.style.border = '';
                 c.style.boxShadow = '';
             });
             // Add selection border
-            this.style.border = '2px solid #00ffcc';
-            this.style.boxShadow = '0 12px 40px rgba(0, 255, 204, 0.4)';
-        });
+            card.style.border = '2px solid #00ffcc';
+            card.style.boxShadow = '0 12px 40px rgba(0, 255, 204, 0.4)';
+        }
+        
+        // 削除ボタンの処理
+        if (e.target.closest('.delete-character-btn')) {
+            console.log("Character Delete Button Click!!")
+            e.stopPropagation(); // キャラクターカードの選択を防ぐ
+            const btn = e.target.closest('.delete-character-btn');
+            const userId = btn.value;
+
+            fetch('https://dg-core/deleteCharacter', {
+                body: JSON.stringify({user_id: userId}),
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8",
+                },
+                method: "POST"
+            });
+        }
     });
     
     const createBackBtn = document.querySelector('.character-back-button');
@@ -84,31 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const characterDelBtn = document.querySelectorAll(".delete-character-btn");
-    if (characterDelBtn) {
-        characterDelBtn.forEach((btn) => {
-            btn.addEventListener('click', function() {
-                const userId = this.value;
-
-                fetch('https://dg-core/deleteCharacter', {
-                    body: JSON.stringify({user_id: userId}),
-                    headers: {
-                        "Content-Type": "application/json; charset=UTF-8",
-                    },
-                    method: "POST"
-                });
-            });
-        })
-    }
-
-    // Create character button
-    const createBtn = document.querySelector('.create-character');
-    if (createBtn) {
-        createBtn.addEventListener('click', function() {
+    // Create character button - イベント委譲を使用
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.create-character')) {
             // キャラクター作成画面への遷移処理
             showSection("character-creation");
-        });
-    }
+            initializeCharacterCreation();
+        }
+    });
 
     // Status circle animations
     const statusCircles = document.querySelectorAll('.status-circle');
@@ -354,10 +357,6 @@ function renderCharacterList(characters) {
     if (characters.length < 3) {
         const createCard = document.createElement("div");
         createCard.className = "character-card glass-panel create-character";
-        createCard.onclick = function() {
-            showSection("character-creation");
-            initializeCharacterCreation();
-        }
         createCard.innerHTML = `
             <div>
                 <div style="font-size: 48px; margin-bottom: 16px;">+</div>
@@ -380,13 +379,13 @@ window.addEventListener("message", (event) => {
     }
 })
 
-// renderCharacterList([{
-//     'id': '1234',
-//     'firstname': '田中',
-//     'lastname': '太郎',
-//     'gender': '男性',
-//     'nationality': '日本',
-//     'slot': 1,
-//     'cash': 500,
-// }])
-// showSection('character')
+renderCharacterList([{
+    'id': '1234',
+    'firstname': '田中',
+    'lastname': '太郎',
+    'gender': '男性',
+    'nationality': '日本',
+    'slot': 1,
+    'cash': 500,
+}])
+showSection('character')
