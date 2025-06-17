@@ -11,3 +11,8 @@ RegisterNUICallback("createCharacter", function (data, cb)
     TriggerServerEvent("dg-core:Server:createCharacter", data)
     cb({})
 end)
+
+RegisterNUICallback("deleteCharacter", function (data, cb)
+    TriggerServerEvent("dg-core:Server:deleteCharacter", data)
+    cb({})
+end)

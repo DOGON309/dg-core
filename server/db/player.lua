@@ -14,7 +14,7 @@ function DGCore.Database.Player.Exists(playerId)
 end
 
 function DGCore.Database.Player.SelectById(playerId)
-    return DGDB.fetch(DGCore.Constant.Queries.Player.SelectById, { playerId })
+    return DGDB.fetchOne(DGCore.Constant.Queries.Player.SelectById, { playerId })
 end
 
 function DGCore.Database.Player.SelectByUserId(userId)
