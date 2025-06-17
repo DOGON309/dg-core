@@ -7,5 +7,16 @@ AddEventHandler("dg-core:Server:createCharacter", function (data)
     local player = DGCore.Player.Create(data, user)
 
     local characters = DGCore.Database.Player.SelectByUserId(user.id)
+
+    -- デバッグ
+    if DGConfig.Debug == 1 then
+        print('createCharacter')
+        for i, d in ipairs(characters) do
+            for key, value in pairs(d) do
+                print(string.format('%s: %s: %s', i, key, value))
+            end
+        end
+    end
+
     TriggerClientEvent('dg-core:Client:showCharacter', src, characters)
 end)

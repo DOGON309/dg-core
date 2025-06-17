@@ -84,7 +84,7 @@ RegisterNetEvent("dg-core:Server:playerReady", function ()
     if DGConfig.Debug == 1 then
         print(string.format('Characters count: %s', #characters))
         for i, d in ipairs(characters) do
-            for key, value in ipairs(d) do
+            for key, value in pairs(d) do
                 print(string.format('%s: %s: %s', i, key, value))
             end
         end
@@ -97,7 +97,7 @@ RegisterNetEvent("dg-core:Server:playerReady", function ()
     -- デバッグ
     if DGConfig.Debug == 1 then
         for i, d in ipairs(DGCore.Users) do
-            for key, value in ipairs(d) do
+            for key, value in pairs(d) do
                 print(string.format('%s: %s: %s', i, key, value))
             end
         end

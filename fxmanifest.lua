@@ -10,7 +10,8 @@ version '0.1.0'
 
 -- クライアントに読み込まれるファイル
 client_scripts {
-    'client/*.lua',
+    'config.lua',
+    'client/*.lua'
 }
 
 -- サーバーに読み込まれるファイル
