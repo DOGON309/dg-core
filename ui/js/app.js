@@ -201,7 +201,7 @@ function updatePreview() {
     // Update preview name
     const previewName = document.getElementById('previewName');
     if (previewName) {
-        const fullName = (lastname + ' ' + firstname).trim();
+        const fullName = (firstname + ' ' + lastname).trim();
         previewName.textContent = fullName || '未入力';
     }
 
@@ -225,12 +225,7 @@ function updatePreview() {
     // Update preview gender
     const previewGender = document.getElementById('previewGender');
     if (previewGender) {
-        const genderLabels = {
-            'male': '男性',
-            'female': '女性',
-            'other': 'その他'
-        };
-        previewGender.textContent = genderLabels[gender] || '未選択';
+        previewGender.textContent = gender || '未選択';
     }
 
     // Update preview nationality
@@ -329,7 +324,7 @@ function renderCharacterList(characters) {
                 </div>
                 <div class="character-details">
                     <span>スロット：${character.slot}</span>
-                    <span>所持金：¥${character.wallet.cash}</span>
+                    <span>所持金：¥${character.cash}</span>
                 </div>
             </div>
         `;

@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 CREATE TABLE IF NOT EXISTS  player (
     id VARCHAR(36) PRIMARY KEY,
-    user_id VARCHAR(36) REFERENCES user(id),
+    user_id VARCHAR(36) REFERENCES user(id) ON DELETE CASCADE,
     firstname VARCHAR(255),
     lastname VARCHAR(255),
     birthday VARCHAR(255),
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS  item (
 
 CREATE TABLE IF NOT EXISTS  weapon (
     id VARCHAR(36) PRIMARY KEY,
-    item_id VARCHAR(36) REFERENCES item(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    item_id VARCHAR(36) REFERENCES item(id) ON DELETE CASCADE,
     damage INT,
     recoil FLOAT,
     firerate FLOAT,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS  weapon (
 
 CREATE TABLE IF NOT EXISTS  player_status (
     id VARCHAR(36) PRIMARY KEY,
-    player_id VARCHAR(36) REFERENCES player(id),
+    player_id VARCHAR(36) REFERENCES player(id) ON DELETE CASCADE,
     hunger INT,
     thirst INT,
     stress INT,

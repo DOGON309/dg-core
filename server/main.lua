@@ -80,10 +80,26 @@ RegisterNetEvent("dg-core:Server:playerReady", function ()
 
     local characters = DGCore.Database.Player.SelectByUserId(user.id)
 
+    -- デバッグ
+    if DGConfig.Debug == 1 then
+        print(string.format('Characters count: %s', #characters))
+        for i, d in ipairs(characters) do
+            for key, value in ipairs(d) do
+                print(string.format('%s: %s: %s', i, key, value))
+            end
+        end
+    end
+
     TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
 
     DGCore.Users[src] = user
 
     -- デバッグ
-    if DGConfig.Debug == 1 then for i, d in ipairs(DGCore.Users) do for key, value in ipairs(d) do print(string.format('%s: %s: %s', i, key, value)) end end end
+    if DGConfig.Debug == 1 then
+        for i, d in ipairs(DGCore.Users) do
+            for key, value in ipairs(d) do
+                print(string.format('%s: %s: %s', i, key, value))
+            end
+        end
+    end
 end)

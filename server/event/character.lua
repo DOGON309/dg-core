@@ -5,4 +5,7 @@ AddEventHandler("dg-core:Server:createCharacter", function (data)
     local rockstartid = GetPlayerIdentifierByType(src, 'license')
 
     local player = DGCore.Player.Create(data, user)
+
+    local characters = DGCore.Database.Player.SelectByUserId(user.id)
+    TriggerClientEvent('dg-core:Client:showCharacter', src, characters)
 end)
