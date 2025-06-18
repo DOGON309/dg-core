@@ -3,7 +3,7 @@ DGConfig = {}
 -- QBCoreと設定内容はほぼ同じ
 
 DGConfig.MaxPlayers = GetConvarInt('sv_maxclients', 48)         -- 参加プレイヤーの最大人数（デフォルトは48人）
-DGConfig.DefaultSpawn = vector4(-1035.71, -2731.87, 12.86, 0.0) -- デフォルトにスポーン位置
+DGConfig.DefaultSpawn = vector3(-1035.71, -2731.87, 12.86) -- デフォルトにスポーン位置
 DGConfig.UpdateInterval = 5                                     -- プレイヤデータの更新頻度（分単位）
 DGConfig.StatusInterval = 5000                                  -- プレイヤーステータスの確認頻度（ミリ秒単位）
 

@@ -18,6 +18,25 @@ RegisterNUICallback("deleteCharacter", function (data, cb)
 end)
 
 RegisterNUICallback("selectCharacter", function (data, cb)
+    SetNuiFocus(false, false)
     TriggerServerEvent("dg-core:Server:selectCharacter", data)
     cb({})
+end)
+
+RegisterNetEvent("dg-core:Client:spawnCharacter")
+AddEventHandler("dg-core:Client:spawnCharacter", function (character)
+    ShutdownLoadingScreen()
+
+    local spawnPos = DGConfig.DefaultSpawn
+
+    DoScreenFadeOut(500)
+    Wait(500)
+
+    SetEntityCoords(PlayerPedId(), spawnPos.x, spawnPos.y, spawnPos.z)
+    SetEntityHeading(PlayerPedId(), 0.0)
+
+    Wait(500)
+    DoScreenFadeIn(500)
+
+    TriggerEvent("dg-core:Client:LoadSkin", character.skin)
 end)
