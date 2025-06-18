@@ -31,6 +31,7 @@ ui_page 'ui/index.html'
 -- クライアント側がダウンロードするファイル
 files {
     'ui/index.html',
+    'ui/map.png',
     'ui/css/style.css',
     'ui/js/app.js',
     'ui/images/*.png'

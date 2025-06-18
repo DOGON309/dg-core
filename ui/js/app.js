@@ -30,8 +30,61 @@ function getJapaneseLabel(sectionId) {
     return labels[sectionId] || sectionId;
 }
 
+// ミニマップの拡大・縮小機能
+let minimapZoom = 1.0;
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 3.0;
+const ZOOM_STEP = 0.25;
+
+function initializeMinimapControls() {
+    const zoomInBtn = document.querySelector('.minimap-zoom-in');
+    const zoomOutBtn = document.querySelector('.minimap-zoom-out');
+    
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', function() {
+            zoomMinimap(1);
+        });
+    }
+    
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', function() {
+            zoomMinimap(-1);
+        });
+    }
+}
+
+function zoomMinimap(direction) {
+    const newZoom = minimapZoom + (direction * ZOOM_STEP);
+    
+    if (newZoom >= MIN_ZOOM && newZoom <= MAX_ZOOM) {
+        minimapZoom = newZoom;
+        updateMinimapZoom();
+    }
+}
+
+function updateMinimapZoom() {
+    const mapElements = document.querySelectorAll('.minimap-content');
+    
+    mapElements.forEach(mapElement => {
+        // 現在の回転状態を取得
+        const currentTransform = mapElement.style.transform || '';
+        const rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
+        const rotation = rotationMatch ? rotationMatch[1] : '0deg';
+        
+        // 回転と拡大・縮小を組み合わせ
+        const rotationTransform = `rotate(${rotation})`;
+        const scaleTransform = `scale(${minimapZoom})`;
+        mapElement.style.transform = `${rotationTransform} ${scaleTransform}`;
+    });
+    
+    console.log(`Minimap zoom: ${minimapZoom.toFixed(2)}x`);
+}
+
 // Initialize all interactive elements
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize minimap controls
+    initializeMinimapControls();
+    
     // Add hover effects for inventory slots
     const inventorySlots = document.querySelectorAll('.inventory-slot');
     
@@ -381,6 +434,22 @@ function renderCharacterList(characters) {
     }
 }
 
+const mapConfig = {
+    worldMin: { x: -4000.0, y: -4000.0},
+    worldMax: { x: 4500.0, y: 8000.0},
+    baseMapSize: 2048
+}
+
+function worldToMapCoords(x, y) {
+    const { worldMin, worldMax, baseMapSize } = mapConfig;
+    const scaleMapSize = baseMapSize * 2.0;
+
+    const mapX = ((x - worldMin.x) / (worldMax.x - worldMin.x)) * scaleMapSize;
+    const mapY = ((worldMax.y - y) / (worldMax.y - worldMin.y)) * scaleMapSize;
+
+    return { mapX, mapY };
+}
+
 window.addEventListener("message", (event) => {
     const data = event.data;
 
@@ -396,6 +465,32 @@ window.addEventListener("message", (event) => {
         console.log("Character Select Close");
 
         document.getElementById("character").classList.remove("active");
+    }
+
+    if (data.action === "updateMinimap") {
+        console.log("update Minimap!!");
+        const mapElement = document.querySelector(".minimap-content");
+
+        const coords = worldToMapCoords(data.x, data.y);
+
+        const minimapCenter = 100;
+        const offsetX = coords.mapX - minimapCenter;
+        const offsetY = coords.mapY - minimapCenter;
+
+        // 拡大・縮小を考慮した位置調整
+        const scaledOffsetX = offsetX * minimapZoom;
+        const scaledOffsetY = offsetY * minimapZoom;
+
+        mapElement.style.left = `-${scaledOffsetX}px`;
+        mapElement.style.top = `-${scaledOffsetY}px`;
+        
+        // 回転と拡大・縮小を組み合わせ
+        const currentTransform = mapElement.style.transform || '';
+        const rotationTransform = `rotate(${-data.heading}deg)`;
+        const scaleTransform = `scale(${minimapZoom})`;
+        
+        // 回転と拡大・縮小の順序を調整（回転→拡大・縮小）
+        mapElement.style.transform = `${rotationTransform} ${scaleTransform}`;
     }
 })
 

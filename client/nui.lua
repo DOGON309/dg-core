@@ -18,7 +18,6 @@ RegisterNUICallback("deleteCharacter", function (data, cb)
 end)
 
 RegisterNUICallback("selectCharacter", function (data, cb)
-    SetNuiFocus(false, false)
     TriggerServerEvent("dg-core:Server:selectCharacter", data)
     cb({})
 end)
@@ -31,6 +30,12 @@ AddEventHandler("dg-core:Client:spawnCharacter", function (character)
 
     DoScreenFadeOut(500)
     Wait(500)
+
+    SetNuiFocus(false, false)
+    RenderScriptCams(false, false, 0, true, true)
+    FreezeEntityPosition(PlayerPedId(), false)
+    SetEntityVisible(PlayerPedId(), true, false)
+    ClearPedTasksImmediately(PlayerPedId())
 
     SetEntityCoords(PlayerPedId(), spawnPos.x, spawnPos.y, spawnPos.z)
     SetEntityHeading(PlayerPedId(), 0.0)
