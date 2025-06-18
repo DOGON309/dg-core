@@ -51,17 +51,15 @@ function DGCore.Player.Load(playerId)
     local playerStatus = DGCore.Database.PlayerStatus.SelectJoinStatusByPlayerId(playerId)
     if not playerStatus then return nil end
 
-    local playerItems = DGCore.Database.PlayerItems.SelectJoinItemByPlayerId(playerId) or {}
-    local playerWallet = DGCore.Database.PlayerWallet.SelectByPlayerId(playerId) or {}
-    local playerBanks = DGCore.Database.PlayerBanks.SelectByPlayerId(playerId) or {}
-    local playerJobs = DGCore.Database.PlayerJobs.SelectJoinJobByPlayerId(playerId) or {}
-    local playerGang = DGCore.Database.PlayerGang.SelectJoinGangByPlayerId(playerId) or {}
+    local playerItems = DGCore.Database.PlayerItems.SelectJoinItemByPlayerId(playerId)
+    local playerBanks = DGCore.Database.PlayerBanks.SelectByPlayerId(playerId)
+    local playerJobs = DGCore.Database.PlayerJobs.SelectJoinJobByPlayerId(playerId)
+    local playerGang = DGCore.Database.PlayerGang.SelectJoinGangByPlayerId(playerId)
 
     local player = DGModel.Player(
         DGModel.PlayerData(playerData),
         DGModel.PlayerStatus(playerStatus),
         DGModel.PlayerItems(playerItems),
-        DGModel.PlayerWallet(playerWallet),
         DGModel.PlayerBanks(playerBanks),
         DGModel.PlayerJobs(playerJobs),
         DGModel.PlayerGang(playerGang)

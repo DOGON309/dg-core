@@ -391,6 +391,12 @@ window.addEventListener("message", (event) => {
         renderCharacterList(data.characters);
         showSection('character');
     }
+
+    if (data.action === "closeCharacter") {
+        console.log("Character Select Close");
+
+        document.getElementById("character").classList.remove("active");
+    }
 })
 
 renderCharacterList([{

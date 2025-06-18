@@ -8,7 +8,7 @@ DGModel = DGModel or {}
 -- @playerBanks DGModel.PlayerBanks
 -- @playerJobs DGModel.PlayerJobs
 -- @playerGang DGModel.PlayerGang
-function DGModel.Player(playerData, playerStatus, playerItems, playerWallet, playerBanks, playerJobs, playerGang)
+function DGModel.Player(playerData, playerStatus, playerItems, playerBanks, playerJobs, playerGang)
     local self = {}
 
     self.id = playerData.id
@@ -326,7 +326,7 @@ function DGModel.PlayerJobs(playerJobs)
     return result
 end
 
-DGModel.PlayerJobs = {}
+DGModel.PlayerJob = {}
 
 function DGModel.PlayerJob(playerJob)
     local self = {}

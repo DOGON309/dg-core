@@ -38,5 +38,8 @@ AddEventHandler("dg-core:Client:spawnCharacter", function (character)
     Wait(500)
     DoScreenFadeIn(500)
 
+    SendNUIMessage({
+        action = "closeCharacter"
+    })
     TriggerEvent("dg-core:Client:LoadSkin", character.skin)
 end)
