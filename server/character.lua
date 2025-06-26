@@ -6,34 +6,42 @@ function DGCore.Character.Create(data, user)
     local characters = DGCore.DB.Character.SelectByUserId(user.id)
     if #characters >= 3 then return end
 
-    local character = DGCore.Model.Character({
-        id = DGCore.Character.GenerateUserId(),
-        user_id = user.id,
-        firstName = data.firstName,
-        lastName = data.lastName,
-        birthday = data.birthday,
-        gender = data.gender,
-        cash = DGConfig.Money.DefaultMoney.cash,
-        nationality = data.nationality,
-        slot = #characters + 1,
-        pos_x = DGConfig.DefaultSpawn.x,
-        pos_y = DGConfig.DefaultSpawn.y,
-        pos_z = DGConfig.DefaultSpawn.z,
-        heading = 12,
-        hp = 100,
-        armor = 0,
-        hunger = 100,
-        thirst = 100,
-        weight = DGConfig.Character.DefaultWeight,
-        is_dead = 0,
-        is_crippling = 0,
-        is_handcuff = 0,
-        is_tracker = 0,
-        is_jail = 0,
-        is_ban = 0,
-        ban_reason = '',
-        is_deleted = 0
-    })
+    local character = DGCore.Model.Character(
+        DGCore.Character.GenerateUserId(),  -- id
+        user.id,  -- user_id
+        data.firstName,  -- firstName
+        data.lastName,  --lastName
+        data.birthday, -- birthday
+        data.gender,  --gender
+        DGConfig.Money.DefaultMoney.cash,  -- cash 
+        data.nationality,  -- nationality
+        #characters + 1,  -- slot
+        {},  -- skin
+        DGConfig.DefaultSpawn.x,  -- pos_x
+        DGConfig.DefaultSpawn.y,  -- pos_y
+        DGConfig.DefaultSpawn.z,  -- pos_z
+        12,  -- heading
+        100,  -- hp
+        0,  -- armor
+        100,  -- hunger
+        100,  -- thirst
+        0, -- stress
+        DGConfig.Character.DefaultWeight,  -- weight
+        0,  -- is_dead
+        0,  -- is_crippling
+        0,  -- is_handcuff
+        0,  -- is_tracker
+        0,  -- is_jail
+        0,  -- is_is_ban
+        '',  -- ban_reason
+        0,  -- is_deleted
+        {},  -- CharacterBanks
+        {},  -- CharacterPhones
+        {},  -- CharacterItems
+        {},  -- CharacterVehicles
+        {},  -- CharacterJobs
+        {} -- CharacterGang
+    )
 
     character:create()
 

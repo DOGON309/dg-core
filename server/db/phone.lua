@@ -8,7 +8,7 @@ function DGCore.DB.Phone.SelectAll()
 end
 
 function DGCore.DB.Phone.SelectByPhoneNumber(phone_number)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.Phone.SelectByPhoneNumber, { phone_number })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.Phone.SelectByPhoneNumber, { phone_number })
 end
 
 function DGCore.DB.Phone.Insert(Phone)

@@ -1,3 +1,7 @@
+DGCore = DGCore or {}
+DGCore.Users = DGCore.Users or {}
+DGCore.Characters = DGCore.Characters or {}
+
 RegisterNetEvent('dg-core:Server:CreateCharacter')
 AddEventHandler('dg-core:Server:CreateCharacter', function (data)
     local src = source

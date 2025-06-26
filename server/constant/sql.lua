@@ -64,8 +64,8 @@ DGCore.Constant.Queries = {
     },
     Item = {
         SelectAll = string.format('SELECT * FROM %s', DGCore.Constant.Tables.Item),
-        Insert = string.format('INSERT INTO %s (id, label, description, event, weight, image, stack, category, `unique`, usable, price, is_trade, is_remove, metadata) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'),
-        Update = string.format('UPDATE %s SET label = ?, description = ?, event = ?, weight = ?, image = ?, stack = ?, category = ?, `unique` = ?, usable = ?, price = ?, is_trade = ?, is_remove = ?, metadata = ? WHERE id = ?')
+        Insert = string.format('INSERT INTO %s (id, label, description, event, weight, image, stack, category, `unique`, usable, price, is_trade, is_remove, metadata) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.Item),
+        Update = string.format('UPDATE %s SET label = ?, description = ?, event = ?, weight = ?, image = ?, stack = ?, category = ?, `unique` = ?, usable = ?, price = ?, is_trade = ?, is_remove = ?, metadata = ? WHERE id = ?', DGCore.Constant.Tables.Item)
     },
     ItemPermission = {
         SelectAll = string.format('SELECT * FROM %s', DGCore.Constant.Tables.ItemPermission),
@@ -74,7 +74,7 @@ DGCore.Constant.Queries = {
     },
     Vehicle = {
         SelectAll = string.format('SELECT * FROM %s WHERE is_disable = FALSE', DGCore.Constant.Tables.Vehicle),
-        Insert = string.format('INSERT INTO %s (id, label, brand, type, category, price, trunk_capacity, fuel_capacity, seats, is_rentable, is_sellable, is_disable, image, metadata) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'),
+        Insert = string.format('INSERT INTO %s (id, label, brand, type, category, price, trunk_capacity, fuel_capacity, seats, is_rentable, is_sellable, is_disable, image, metadata) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.Vehicle),
         Update = string.format('UPDATE %s SET label = ?, brand = ?, type = ?, category = ?, price = ?, trunk_capacity = ?, fuel_capacity = ?, seats = ?, is_rentable = ?, is_sellable = ?, is_disable = ?, image = ?, metadata = ? WHERE id = ?', DGCore.Constant.Tables.Vehicle)
     },
     VehiclePermission = {
@@ -84,13 +84,13 @@ DGCore.Constant.Queries = {
     },
     Job = {
         SelectAll = string.format('SELECT * FROM %s WHERE is_disable = FALSE', DGCore.Constant.Tables.Job),
-        Insert = string.format('INSERT INTO %s (id, label, icon, description, bank, is_whitelist, is_disable) VALUE (?, ?, ?, ?, ?, ?, ?)'),
+        Insert = string.format('INSERT INTO %s (id, label, icon, description, bank, is_whitelist, is_disable) VALUE (?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.Job),
         Update = string.format('UPDATE %s SET label = ?, icon = ?, description = ?, bank = ?, is_whitelist = ?, is_disable = ? WHERE id =?', DGCore.Constant.Tables.Job)
     },
     JobGrade = {
         SelectAll = string.format('SELECT * FROM %s WHERE is_disable = FALSE', DGCore.Constant.Tables.JobGrade),
         SelectByJobId = string.format('SELECT * FROM %s WHERE job_id = ? AND is_disable = FALSE', DGCore.Constant.Tables.JobGrade),
-        Insert = string.format('INSERT INTO %s (id, job_id, grade, label, salary, is_disable) VALUE (?, ?, ?, ?, ?, ?)'),
+        Insert = string.format('INSERT INTO %s (id, job_id, grade, label, salary, is_disable) VALUE (?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.JobGrade),
         Update = string.format('UPDATE %s SET job_id = ?, grade = ?, label = ?, salary = ?, is_disable = ? WHERE id = ?', DGCore.Constant.Tables.JobGrade),
     },
     JobPermission = {
@@ -100,14 +100,14 @@ DGCore.Constant.Queries = {
     },
     Gang = {
         SelectAll = string.format('SELECT * FROM %s WHERE is_disable = FALSE', DGCore.Constant.Tables.Gang),
-        Insert = string.format('INSERT INTO %s (id, label, icon, description, bank, is_disable) VALUE (?, ?, ?, ?, ?, ?)'),
+        Insert = string.format('INSERT INTO %s (id, label, icon, description, bank, is_disable) VALUE (?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.Gang),
         Update = string.format('UPDATE %s SET label = ?, icon = ?, description = ?, bank = ?, is_disable = ? WHERE id = ?', DGCore.Constant.Tables.Gang)
     },
     GangGrade = {
         SelectAll = string.format('SELECT * FROM %s WHERE is_disable = FALSE', DGCore.Constant.Tables.GangGrade),
         SelectByGangId = string.format('SELECT * FROM %s WHERE gang_id = ? AND is_disable = FALSE', DGCore.Constant.Tables.GangGrade),
-        Insert = string.format('INSERT INTO %s (id, gang_id, grade, label, salary, is_disable) VALUE (?, ?, ?, ?, ?, ?)'),
-        Update = string.format('UPDATE %s SET gang_id = ?, grade = ?, label = ?, salary = ?, is_disable = ? WHERE id = ?')
+        Insert = string.format('INSERT INTO %s (id, gang_id, grade, label, salary, is_disable) VALUE (?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.GangGrade),
+        Update = string.format('UPDATE %s SET gang_id = ?, grade = ?, label = ?, salary = ?, is_disable = ? WHERE id = ?', DGCore.Constant.Tables.GangGrade)
     },
     GangPermission = {
         SelectAll = string.format('SELECT * FROM %s', DGCore.Constant.Tables.GangPermission),
@@ -118,7 +118,7 @@ DGCore.Constant.Queries = {
         SelectAll = string.format('SELECT * FROM %s WHERE is_deleted = FALSE', DGCore.Constant.Tables.Character),
         SelectById = string.format('SELECT * FROM %s WHERE id = ? AND is_deleted = FALSE', DGCore.Constant.Tables.Character),
         SelectByUserId = string.format('SELECT * FROM %s WHERE user_id = ? AND is_deleted = FALSE', DGCore.Constant.Tables.Character),
-        Insert = string.format('INSERT INTO %s (id, user_id, firstName, lastName, birthday, gender, cash, nationality, slot, skin, pos_x, pos_y, pos_z, heading, hp, armor, hunger, thirst, stress, weight, is_dead, is_crippling, is_handcuff, is_tracker, is_jail, is_ban, is_deleted) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.Character),
+        Insert = string.format('INSERT INTO %s (id, user_id, firstName, lastName, birthday, gender, cash, nationality, slot, skin, pos_x, pos_y, pos_z, heading, hp, armor, hunger, thirst, stress, weight, is_dead, is_crippling, is_handcuff, is_tracker, is_jail, is_ban, ban_reason, is_deleted) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.Character),
         Update = string.format('UPDATE %s SET user_id = ?, firstName = ?, lastName = ?, birthday = ?, gender = ?, cash = ?, nationality = ?, slot = ?, skin = ?, pos_x = ?, pos_y = ?, pos_z = ?, heading = ?, hp = ?, armor = ?, hunger = ?, thirst = ?, stress = ?, weight = ?, is_dead = ?, is_crippling = ?, is_handcuff = ?, is_tracker = ?, is_jail = ?, is_ban = ?, ban_reason = ?, is_deleted = ? WHERE id = ?', DGCore.Constant.Tables.Character),
         UpdateStatus = string.format('UPDATE %s SET hp = ?, armor = ?, hunger = ?, stress = ?, weight = ?, is_dead = ?, is_handcuff = ?, is_tracker = ?, is_jail = ? WHERE id = ?', DGCore.Constant.Tables.Character)
     },
@@ -137,13 +137,13 @@ DGCore.Constant.Queries = {
     CharacterItem = {
         SelectAll = string.format('SELECT * FROM %s', DGCore.Constant.Tables.CharacterItem),
         SelectByCharacterId = string.format('SELECT * FROM %s WHERE character_id = ?', DGCore.Constant.Tables.CharacterItem),
-        Insert = string.format('INSERT INTO %s (item_id, character_id, quantity, durability, slot, is_jail, metadata) VALUE (?, ?, ?, ?, ?, ?, ?)'),
+        Insert = string.format('INSERT INTO %s (item_id, character_id, quantity, durability, slot, is_jail, metadata) VALUE (?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.CharacterItem),
         Update = string.format('UPDATE %s SET quantity = ?, durability = ?, slot = ?, is_jail = ?, metadata = ? WHERE item_id = ? AND character_id = ?', DGCore.Constant.Tables.CharacterItem)
     },
     CharacterVehicle = {
         SelectAll = string.format('SELECT * FROM %s', DGCore.Constant.Tables.CharacterVehicle),
         SelectByCharacterId = string.format('SELECT * FROM %s WHERE character_id = ?', DGCore.Constant.Tables.CharacterVehicle),
-        Insert = string.format('INSERT INTO %s (vehicle_id, character_id, plate, garage, fuel, engine_health, body_health, is_impounded, is_insured, mods) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'),
+        Insert = string.format('INSERT INTO %s (vehicle_id, character_id, plate, garage, fuel, engine_health, body_health, is_impounded, is_insured, mods) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', DGCore.Constant.Tables.CharacterVehicle),
         Update = string.format('UPDATE %s SET character_id = ?, plate = ?, garage = ?, fuel = ?, engine_health = ?, body_health = ?, is_impounded = ?, is_insured = ?, mods = ? WHERE vehicle_id = ?', DGCore.Constant.Tables.CharacterVehicle),
     },
     CharacterJob = {

@@ -8,11 +8,11 @@ function DGCore.DB.Bank.SelectAll()
 end
 
 function DGCore.DB.Bank.SelectById(id)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.Bank.SelectById, { id })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.Bank.SelectById, { id })
 end
 
 function DGCore.DB.Bank.SelectByAccountNumber(account_number)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.Bank.SelectByAccountNumber, { account_number })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.Bank.SelectByAccountNumber, { account_number })
 end
 
 function DGCore.DB.Bank.Insert(bank)
@@ -36,7 +36,7 @@ function DGCore.DB.BankTransaction.SelectAll()
 end
 
 function DGCore.DB.BankTransaction.SelectById(id)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.BankTransaction.SelectById, { id })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.BankTransaction.SelectById, { id })
 end
 
 function DGCore.DB.BankTransaction.SelectByFromBank(from_bank)

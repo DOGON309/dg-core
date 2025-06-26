@@ -8,7 +8,7 @@ function DGCore.DB.Character.SelectAll()
 end
 
 function DGCore.DB.Character.SelectById(id)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.Character.SelectById, { id })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.Character.SelectById, { id })
 end
 
 function DGCore.DB.Character.SelectByUserId(user_id)

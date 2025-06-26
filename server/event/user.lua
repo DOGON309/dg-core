@@ -1,3 +1,6 @@
+DGCore = DGCore or {}
+DGCore.Users = DGCore.Users or {}
+
 RegisterNetEvent('dg-core:Server:UserReady')
 AddEventHandler('dg-core:Server:UserReady', function ()
     local src = source

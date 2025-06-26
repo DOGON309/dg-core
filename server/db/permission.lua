@@ -8,11 +8,11 @@ function DGCore.DB.Permission.SelectAll()
 end
 
 function DGCore.DB.Permission.SelectById(id)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.Permission.SelectById, { id })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.Permission.SelectById, { id })
 end
 
 function DGCore.DB.Permission.SelectByName(name)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.Permission.SelectByName, { name })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.Permission.SelectByName, { name })
 end
 
 function DGCore.DB.Permission.Insert(permission)

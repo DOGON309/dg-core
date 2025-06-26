@@ -18,19 +18,19 @@ end
 DGCore.DB.GangGrade = {}
 
 function DGCore.DB.GangGrade.SelectAll()
-    return DGCore.DB.fetch(DGCore.Constant.Queries.SelectAll, {})
+    return DGCore.DB.fetch(DGCore.Constant.Queries.GangGrade.SelectAll, {})
 end
 
 function DGCore.DB.GangGrade.SelectByGangId(gang_id)
-    return DGCore.DB.fetch(DGCore.Constant.Queries.SelectByGangId, { gang_id })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.GangGrade.SelectByGangId, { gang_id })
 end
 
 function DGCore.DB.GangGrade.Insert(GangGrade)
-    DGCore.DB.insert(DGCore.Constant.Queries.Insert, GangGrade:toInsert())
+    DGCore.DB.insert(DGCore.Constant.Queries.GangGrade.Insert, GangGrade:toInsert())
 end
 
 function DGCore.DB.GangGrade.Update(GangGrade)
-    DGCore.DB.update(DGCore.Constant.Queries.Update, GangGrade:toUpdate())
+    DGCore.DB.update(DGCore.Constant.Queries.GangGrade.Update, GangGrade:toUpdate())
 end
 
 DGCore.DB.GangPermission = {}

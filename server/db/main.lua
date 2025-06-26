@@ -15,10 +15,6 @@ function DGCore.DB.fetch(query, params)
     return result
 end
 
-function DGCore.DB.fetchOne(query, params)
-    return MySQL.prepare.await(query, params)
-end
-
 function DGCore.DB.scalar(query, params)
     return MySQL.scalar.await(query, params)
 end

@@ -51,7 +51,7 @@ function DGCore.Model.Character(id, user_id, firstName, lastName, birthday, gend
             self.cash,
             self.nationality,
             self.slot,
-            self.skin,
+            json.encode(self.skin),
             self.pos_x,
             self.pos_y,
             self.pos_z,
@@ -130,6 +130,7 @@ end
 
 function DGCore.Model.CharacterBanks(CharacterBanks)
     local result = {}
+    if not CharacterBanks then return nil end
     for i, bank in ipairs(CharacterBanks) do
         result[i] = DGCore.Model.CharacterBank(bank.bank_id, bank.character_id, bank.name, bank.is_default)
     end
@@ -167,6 +168,7 @@ end
 
 function DGCore.Model.CharacterPhones(CharacterPhones)
     local result = {}
+    if not CharacterPhones then return nil end
     for i, phone in ipairs(CharacterPhones) do
         result[i] = DGCore.Model.CharacterPhone(phone.phone_id, phone.character_id)
     end
@@ -198,6 +200,7 @@ end
 
 function DGCore.Model.CharacterItems(CharacterItems)
     local result = {}
+    if not CharacterItems then return nil end
     for i, item in ipairs(CharacterItems) do
         result[i] = DGCore.Model.CharacterItem(item.item_id, item.character_id, item.quantity, item.durability, item.slot, item.is_jail, item.metadata)
     end
@@ -244,6 +247,7 @@ end
 
 function DGCore.Model.CharacterVehicles(CharacterVehicles)
     local result = {}
+    if not CharacterVehicles then return nil end
     for i, vehicle in ipairs(CharacterVehicles) do
         result[i] = DGCore.Model.CharacterVehicle(vehicle.vehicle_id, vehicle.character_id, vehicle.plate, vehicle.garage, vehicle.fuel, vehicle.engine_health, vehicle.body_health, vehicle.is_impounded, vehicle.is_insured, vehicle.mods)
     end
@@ -299,6 +303,7 @@ end
 
 function DGCore.Model.CharacterJobs(CharacterJobs)
     local result = {}
+    if not CharacterJobs then return nil end
     for i, job in ipairs(CharacterJobs) do
         result[i] = DGCore.Model.CharacterJob(job.job_id, job.job_grade_id, job.character_id)
     end

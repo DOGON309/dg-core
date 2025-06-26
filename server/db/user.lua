@@ -8,21 +8,21 @@ function DGCore.DB.User.SelectAll()
 end
 
 function DGCore.DB.User.SelectById(id)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.User.SelectById, { id })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.User.SelectById, { id })
 end
 
 function DGCore.DB.User.SelectByLicense(license)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.User.SelectByLicense, { license })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.User.SelectByLicense, { license })
 end
 
 function DGCore.DB.User.SelectByLicense2(license2)
-    return DGCore.DB.fetchOne(DGCore.Constant.Queries.User.SelectByLicense2, { license2 })
+    return DGCore.DB.fetch(DGCore.Constant.Queries.User.SelectByLicense2, { license2 })
 end
 
 function DGCore.DB.User.Insert(user)
-    DGCore.DB.Insert(DGCore.Constant.Queries.User.Insert, user:toInsert())
+    DGCore.DB.insert(DGCore.Constant.Queries.User.Insert, user:toInsert())
 end
 
 function DGCore.DB.User.Update(user)
-    DGCore.DB.Update(DGCore.Constant.Queries.User.Update, user:toUpdate())
+    DGCore.DB.update(DGCore.Constant.Queries.User.Update, user:toUpdate())
 end

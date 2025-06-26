@@ -276,8 +276,8 @@ function updateBirthDays() {
 }
 
 function updatePreview() {
-    const lastname = document.getElementById('lastname')?.value || '';
-    const firstname = document.getElementById('firstname')?.value || '';
+    const lastName = document.getElementById('lastname')?.value || '';
+    const firstName = document.getElementById('firstname')?.value || '';
     const birthYear = document.getElementById('birthYear')?.value || '';
     const birthMonth = document.getElementById('birthMonth')?.value || '';
     const birthDay = document.getElementById('birthDay')?.value || '';
@@ -287,7 +287,7 @@ function updatePreview() {
     // Update preview name
     const previewName = document.getElementById('previewName');
     if (previewName) {
-        const fullName = (firstname + ' ' + lastname).trim();
+        const fullName = (firstName + ' ' + lastName).trim();
         previewName.textContent = fullName || '未入力';
     }
 
@@ -325,8 +325,8 @@ function updatePreview() {
     // Update preview avatar
     const previewAvatar = document.querySelector('.preview-avatar');
     if (previewAvatar) {
-        if (lastname) {
-            previewAvatar.textContent = lastname.charAt(0);
+        if (lastName) {
+            previewAvatar.textContent = lastName.charAt(0);
         } else {
             previewAvatar.textContent = '?';
         }
@@ -337,8 +337,8 @@ function handleCharacterCreation(event) {
     event.preventDefault();
     
     let formData = {
-        lastname: document.getElementById('lastname').value,
-        firstname: document.getElementById('firstname').value,
+        lastName: document.getElementById('lastname').value,
+        firstName: document.getElementById('firstname').value,
         birthYear: document.getElementById('birthYear').value,
         birthMonth: document.getElementById('birthMonth').value,
         birthDay: document.getElementById('birthDay').value,
@@ -347,7 +347,7 @@ function handleCharacterCreation(event) {
     };
 
     // Validation
-    if (!formData.lastname || !formData.firstname || !formData.birthYear || 
+    if (!formData.lastName || !formData.firstName || !formData.birthYear || 
         !formData.birthMonth || !formData.birthDay || !formData.gender || !formData.nationality) {
         alert('すべての必須項目を入力してください。');
         return;
@@ -369,7 +369,7 @@ function handleCharacterCreation(event) {
     }
 
     // Success message and return to character selection
-    // alert(`キャラクター「${formData.lastname} ${formData.firstname}」が作成されました！`);
+    // alert(`キャラクター「${formData.lastName} ${formData.firstName}」が作成されました！`);
     
     // Reset form
     document.querySelector('.character-form').reset();
@@ -382,7 +382,7 @@ function handleCharacterCreation(event) {
     formData["birthday"] = `${formData.birthYear}-${formData.birthMonth}-${formData.birthDay}`
     console.log('Character Creation Data:', formData);
 
-    fetch('https://dg-core/createCharacter', {
+    fetch('https://dg-core/CreateCharacter', {
         body: JSON.stringify(formData),
         headers: {
             "Content-Type": "application/json; charset=UTF-8",
@@ -402,9 +402,9 @@ function renderCharacterList(characters) {
         card.className = "character-card glass-panel";
         card.setAttribute("data-character_id", character.id);
         card.innerHTML = `
-            <div class="character-avatar">${character.firstname[0]}</div>
+            <div class="character-avatar">${character.firstName[0]}</div>
             <div class="character-info">
-                <h3 class="text-shadow">${character.firstname} ${character.lastname}</h3>
+                <h3 class="text-shadow">${character.firstName} ${character.lastName}</h3>
                 <div class="character-details">
                     <span>性別: ${character.gender}</span>
                     <span>国籍：${character.nationality}</span>
@@ -496,8 +496,8 @@ window.addEventListener("message", (event) => {
 
 // renderCharacterList([{
 //     'id': '1234',
-//     'firstname': '田中',
-//     'lastname': '太郎',
+//     'firstName': '田中',
+//     'lastName': '太郎',
 //     'gender': '男性',
 //     'nationality': '日本',
 //     'slot': 1,

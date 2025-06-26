@@ -1,5 +1,5 @@
-RegisterNetEvent("dg-core:Client:showCharacter")
-AddEventHandler("dg-core:Client:showCharacter", function (characters)
+RegisterNetEvent("dg-core:Client:ShowCharacter")
+AddEventHandler("dg-core:Client:ShowCharacter", function (characters)
     SetNuiFocus(true, true)
     SendNUIMessage({
         action = "showCharacter",
@@ -7,8 +7,8 @@ AddEventHandler("dg-core:Client:showCharacter", function (characters)
     })
 end)
 
-RegisterNUICallback("createCharacter", function (data, cb)
-    TriggerServerEvent("dg-core:Server:createCharacter", data)
+RegisterNUICallback("CreateCharacter", function (data, cb)
+    TriggerServerEvent("dg-core:Server:CreateCharacter", data)
     cb({})
 end)
 

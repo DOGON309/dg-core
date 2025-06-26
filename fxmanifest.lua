@@ -25,15 +25,14 @@ server_scripts {
     'server/event/*.lua'
 }
 
-ui_page 'ui/index.html'
+ui_page 'client/ui/index.html'
 
 -- クライアント側がダウンロードするファイル
 files {
-    'ui/index.html',
-    'ui/map.png',
-    'ui/css/style.css',
-    'ui/js/app.js',
-    'ui/images/*.png'
+    'client/ui/index.html',
+    'client/ui/css/style.css',
+    'client/ui/js/app.js',
+    'client/ui/images/*.png'
 }
 
 -- このリソースを読み込む前に読み込むリソース

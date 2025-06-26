@@ -30,6 +30,7 @@ DGCore.Cash = {}
 
 function DGCore.Cash.User()
     local users = DGCore.DB.User.SelectAll()
+    print(users)
     for _, row in ipairs(users) do
         DGCore.Users[row.license] = DGCore.Model.User(row.id, row.license, row.license2, row.is_admin, row.is_ban, row.ban_reason, row.is_whitelist, row.note)
     end
