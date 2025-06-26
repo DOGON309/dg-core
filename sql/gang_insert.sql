@@ -1,7 +1,0 @@
-USE dgcore;
-
-INSERT INTO gang (id, label) VALUES
-('BE3CC613-79A9-47B4-BAC3-251FB32B1157', '無所属');
-
-INSERT INTO gang_grade (id, gang_id, level, label) VALUES
-('9C3DE4C6-14F7-4FC5-8B24-8DE669B5075A', 'BE3CC613-79A9-47B4-BAC3-251FB32B1157', 0, '無所属');

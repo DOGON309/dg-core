@@ -1,54 +1,27 @@
-RegisterNetEvent("dg-core:Server:createCharacter")
-AddEventHandler("dg-core:Server:createCharacter", function (data)
+RegisterNetEvent('dg-core:Server:CreateCharacter')
+AddEventHandler('dg-core:Server:CreateCharacter', function (data)
     local src = source
-    local user = DGCore.Users[src]
-    local rockstartid = GetPlayerIdentifierByType(src, 'license')
+    local license = GetPlayerIdentifierByType(src, 'license')
 
-    local player = DGCore.Player.Create(data, user)
+    local user = DGCore.Users[license]
 
-    local characters = DGCore.Database.Player.SelectByUserId(user.id)
+    local character = DGCore.Character.Create(data, user)
+    local characters = DGCore.DB.Character.SelectByUserId(user.id)
 
-    -- デバッグ
-    if DGConfig.Debug == 1 then
-        print('createCharacter')
-        for i, d in ipairs(characters) do
-            for key, value in pairs(d) do
-                print(string.format('%s: %s: %s', i, key, value))
-            end
-        end
+    if not character then
+        print(string.format('[DGCore]キャラクター生成の失敗しました。（license: %s）', license))
+        TriggerClientEvent('dg-core:Client:ShowCharacter', src, characters)
+        return 
     end
 
-    TriggerClientEvent('dg-core:Client:showCharacter', src, characters)
+    DGCore.Characters[character.id] = character
+    TriggerClientEvent('dg-core:Client:ShowCharacter', src, characters)
 end)
 
-RegisterNetEvent("dg-core:Server:deleteCharacter")
-AddEventHandler("dg-core:Server:deleteCharacter", function(data)
+RegisterNetEvent('dg-core:Server:SelectCharacter')
+AddEventHandler('dg-core:Server:SelectCharacter', function (character_id)
     local src = source
-    local user = DGCore.Users[src]
+    local character = DGCore.Characters[character_id]
 
-    -- デバッグ
-    if DGConfig.Debug == 1 then print(string.format('dg-core:Server:deleteCharacter: data.user_id: %s', data.user_id)) end
-    
-    local playerData = DGCore.Database.Player.SelectById(data.user_id)
-
-    DGCore.Database.Player.Delete(playerData.id)
-
-    local characters = DGCore.Database.Player.SelectByUserId(user.id)
-
-    TriggerClientEvent("dg-core:Client:showCharacter", src, characters)
-end)
-
-RegisterNetEvent("dg-core:Server:selectCharacter")
-AddEventHandler("dg-core:Server:selectCharacter", function (data)
-    local src = source
-    local user = DGCore.Users[src]
-
-    -- デバッグ
-    if DGConfig.Debug == 1 then
-        print(string.format('dg-core:Server:selectCharacter: data.character_id: %s', data.character_id))
-    end
-
-    local character = DGCore.Player.Load(data.character_id)
-
-    TriggerClientEvent('dg-core:Client:spawnCharacter', src, character)
+    TriggerClientEvent('dg-core:Client:SpawnCharacter', src, character)
 end)

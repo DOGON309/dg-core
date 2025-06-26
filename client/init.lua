@@ -4,7 +4,7 @@ Citizen.CreateThread(function ()
     end
 
     print("プレイヤー初期化が完了しました")
-    TriggerServerEvent("dg-core:Server:playerReady")
+    TriggerServerEvent("dg-core:Server:UserReady")
 end)
 
 Citizen.CreateThread(function ()
@@ -15,20 +15,20 @@ Citizen.CreateThread(function ()
     end
 end)
 
-Citizen.CreateThread(function ()
-    while true do
-        -- 更新頻度を100ミリ
-        Wait(100)
+-- Citizen.CreateThread(function ()
+--     while true do
+--         -- 更新頻度を100ミリ
+--         Wait(100)
 
-        local playerPed = PlayerPedId()
-        local coords = GetEntityCoords(playerPed)
-        local heading = GetEntityHeading(playerPed)
+--         local playerPed = PlayerPedId()
+--         local coords = GetEntityCoords(playerPed)
+--         local heading = GetEntityHeading(playerPed)
 
-        SendNUIMessage({
-            action = "updateMinimap",
-            x = coords.x,
-            y = coords.y,
-            heading = heading
-        })
-    end
-end)
+--         SendNUIMessage({
+--             action = "updateMinimap",
+--             x = coords.x,
+--             y = coords.y,
+--             heading = heading
+--         })
+--     end
+-- end)

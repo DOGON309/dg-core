@@ -1,24 +1,28 @@
 DGCore = DGCore or {}
-DGCore.Database = DGCore.Database or {}
+DGCore.DB = DGCore.DB or {}
 
-DGCore.Database.User = {}
+DGCore.DB.User = {}
 
-function DGCore.Database.User.SelectById(userid)
-    return DGDB.fetch(DGCore.Constant.Queries.User.SelectById, { userid })
+function DGCore.DB.User.SelectAll()
+    return DGCore.DB.fetch(DGCore.Constant.Queries.User.SelectAll, {})
 end
 
-function DGCore.Database.User.SelectByRockStartId(rockstartid)
-    return DGDB.fetchOne(DGCore.Constant.Queries.User.SelectByRockStartId, { rockstartid })
+function DGCore.DB.User.SelectById(id)
+    return DGCore.DB.fetchOne(DGCore.Constant.Queries.User.SelectById, { id })
 end
 
-function DGCore.Database.User.Exists(userId)
-    return DGDB.fetch(DGCore.Constant.Queries.User.Exists, { userId })
+function DGCore.DB.User.SelectByLicense(license)
+    return DGCore.DB.fetchOne(DGCore.Constant.Queries.User.SelectByLicense, { license })
 end
 
-function DGCore.Database.User.ExistsByRockStartId(rockstartid)
-    return DGDB.fetch(DGCore.Constant.Queries.User.ExistsRockStartId, { rockstartid })
+function DGCore.DB.User.SelectByLicense2(license2)
+    return DGCore.DB.fetchOne(DGCore.Constant.Queries.User.SelectByLicense2, { license2 })
 end
 
-function DGCore.Database.User.Insert(user)
-    return DGDB.insert(DGCore.Constant.Queries.User.Insert, user:toInsertArray())
+function DGCore.DB.User.Insert(user)
+    DGCore.DB.Insert(DGCore.Constant.Queries.User.Insert, user:toInsert())
+end
+
+function DGCore.DB.User.Update(user)
+    DGCore.DB.Update(DGCore.Constant.Queries.User.Update, user:toUpdate())
 end

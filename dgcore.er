@@ -1,0 +1,209 @@
+[user]
+    *id {label:"PRIMARY KEY"}
+    license {label:"VARCHAR(255)"}
+    license2 {label:"VARCHAR(255)"}
+    is_admin {label:"BOOLEAN"}
+    is_ban {label:"BOOLEAN"}
+    ban_reason {label:"VARCHAR(255)"}
+    is_whitelist {label:"BOOLEAN"}
+    note {label:"VARCHAR(255)"}
+[permission]
+    *id {label:"PRIMARY KEY"}
+    name {label:"VARCHAR(255)"}
+[bank]
+    *id {label:"PRIMARY KEY"}
+    account_number {label:"VARCHAR(20)"}
+    type {label:"VARCHAR(50)"}
+    balance {label:"INT"}
+    is_disable {label:"BOOLEAN"}
+    is_infinite {label:"BOOLEAN"}
+[bank_transaction]
+    *id {label:"PRIMARY KEY"}
+    type {label:"VARCHAR(50)"}
+    from_bank {label:"VARCHAR(36)"}
+    to_bank {label:"VARCHAR(36)"}
+    amount {label:"INT"}
+    balance_after {label:"INT"}
+    message {label:"VARCHAR(255)"}
+    timestamp {label:"DATETIME"}
+[phone]
+    *id {label:"PRIMARY KEY"}
+    phone_number {label:"VARCHAR(20)"}
+    is_active {label:"BOOLEAN"}
+    metadata {label:"JSON"}
+[item]
+    *id {label:"PRIMARY KEY"}
+    label {label:"VARCHAR(255)"}
+    description {label:"VARCHAR(255)"}
+    event {label:"VARCHAR(255)"}
+    weight {label:"INT"}
+    image {label:"VARCHAR(255)"}
+    stack {label:"INT"}
+    category {label:"VARCHAR(50)"}
+    unique {label:"BOOLEAN"}
+    usable {label:"BOOLEAN"}
+    price {label:"INT"}
+    is_trade {label:"BOOLEAN"}
+    is_remove {label:"BOOLEAN"}
+    metadata {label:"JSON"}
+[item_permission]
+    item_id {label:"VARCHAR(36)"}
+    permission_id {label:"VARCHAR(36)"}
+    PRIMARY {label:"KEY"}
+[vehicle]
+    *id {label:"PRIMARY KEY"}
+    label {label:"VARCHAR(50)"}
+    brand {label:"VARCHAR(100)"}
+    type {label:"VARCHAR(50)"}
+    category {label:"VARCHAR(50)"}
+    price {label:"INT"}
+    trunk_capacity {label:"INT"}
+    fuel_capacity {label:"INT"}
+    seats {label:"INT"}
+    is_rentable {label:"BOOLEAN"}
+    is_sellable {label:"BOOLEAN"}
+    is_disable {label:"BOOLEAN"}
+    image {label:"VARCHAR(255)"}
+    metadata {label:"JSON"}
+[vehicle_permission]
+    vehicle_id {label:"VARCHAR(36)"}
+    permission_id {label:"VARCHAR(36)"}
+    PRIMARY {label:"KEY"}
+[job]
+    *id {label:"PRIMARY KEY"}
+    label {label:"VARCHAR(255)"}
+    icon {label:"VARCHAR(255)"}
+    description {label:"VARCHAR(255)"}
+    bank {label:"VARCHAR(36)"}
+    is_whitelist {label:"BOOLEAN"}
+    is_disable {label:"BOOLEAN"}
+[job_grade]
+    *id {label:"PRIMARY KEY"}
+    job_id {label:"VARCHAR(36)"}
+    grade {label:"INT"}
+    label {label:"VARCHAR(100)"}
+    salary {label:"INT"}
+    is_disable {label:"BOOLEAN"}
+[job_permission]
+    job_grade_id {label:"VARCHAR(36)"}
+    permission_id {label:"VARCHAR(36)"}
+    PRIMARY {label:"KEY"}
+[gang]
+    *id {label:"PRIMARY KEY"}
+    label {label:"VARCHAR(255)"}
+    icon {label:"VARCHAR(255)"}
+    description {label:"VARCHAR(255)"}
+    bank {label:"VARCHAR(36)"}
+    is_disable {label:"BOOLEAN"}
+[gang_grade]
+    *id {label:"PRIMARY KEY"}
+    gang_id {label:"VARCHAR(36)"}
+    grade {label:"INT"}
+    label {label:"VARCHAR(100)"}
+    salary {label:"INT"}
+    is_disable {label:"BOOLEAN"}
+[gang_permission]
+    gang_grade_id {label:"VARCHAR(36)"}
+    permission_id {label:"VARCHAR(36)"}
+    PRIMARY {label:"KEY"}
+[character]
+    *id {label:"PRIMARY KEY"}
+    user_id {label:"VARCHAR(36)"}
+    firstName {label:"VARCHAR(255)"}
+    lastName {label:"VARCHAR(255)"}
+    birthday {label:"VARCHAR(255)"}
+    gender {label:"VARCHAR(255)"}
+    cash {label:"INT"}
+    nationality {label:"VARCHAR(255)"}
+    slot {label:"INT"}
+    skin {label:"JSON"}
+    pos_x {label:"FLOAT"}
+    pos_y {label:"FLOAT"}
+    pos_z {label:"FLOAT"}
+    heading {label:"FLOAT"}
+    hp {label:"INT"}
+    armor {label:"INT"}
+    hunger {label:"INT"}
+    thirst {label:"INT"}
+    stress {label:"INT"}
+    is_dead {label:"BOOLEAN"}
+    is_crippling {label:"BOOLEAN"}
+    is_handcuff {label:"BOOLEAN"}
+    is_tracker {label:"BOOLEAN"}
+    is_jail {label:"BOOLEAN"}
+    is_ban {label:"BOOLEAN"}
+    ban_reason {label:"VARCHAR(255)"}
+    is_deleted {label:"BOOLEAN"}
+[character_bank]
+    bank_id {label:"VARCHAR(36)"}
+    character_id {label:"VARCHAR(36)"}
+    name {label:"VARCHAR(100)"}
+    is_default {label:"BOOLEAN"}
+    PRIMARY {label:"KEY"}
+[character_phone]
+    phone_id {label:"VARCHAR(36)"}
+    character_id {label:"VARCHAR(36)"}
+[character_item]
+    item_id {label:"VARCHAR(36)"}
+    character_id {label:"VARCHAR(36)"}
+    quantity {label:"INT"}
+    durability {label:"INT"}
+    slot {label:"INT"}
+    is_jail {label:"BOOLEAN"}
+    metadata {label:"JSON"}
+    PRIMARY {label:"KEY"}
+[character_vehicle]
+    vehicle_id {label:"VARCHAR(36)"}
+    character_id {label:"VARCHAR(36)"}
+    plate {label:"VARCHAR(20)"}
+    garage {label:"VARCHAR(100)"}
+    fuel {label:"INT"}
+    engine_health {label:"INT"}
+    body_health {label:"INT"}
+    is_impounded {label:"BOOLEAN"}
+    is_insured {label:"BOOLEAN"}
+    mods {label:"JSON"}
+    PRIMARY {label:"KEY"}
+[character_job]
+    job_id {label:"VARCHAR(36)"}
+    job_grade_id {label:"VARCHAR(36)"}
+    character_id {label:"VARCHAR(36)"}
+    PRIMARY {label:"KEY"}
+[character_gang]
+    gang_id {label:"VARCHAR(36)"}
+    gang_grade_id {label:"VARCHAR(36)"}
+    character_id {label:"VARCHAR(36)"}
+    PRIMARY {label:"KEY"}
+
+user 1--* character
+
+item 1--* item_permission
+vehicle 1--* vehicle_permission
+job 1--* job_permission
+gang 1--* gang_permission
+
+job 1--* job_grade
+gang 1--* gang_grade
+
+item_permission 1--1 permission
+job_permission 1--1 permission
+gang_permission 1--1 permission
+
+bank 1--* bank_transaction
+
+character 1--* character_bank
+character 1--* character_phone
+character 1--* character_item
+character 1--* character_vehicle
+character 1--* character_job
+character 1--* character_gang
+
+character_bank 1--1 bank
+character_phone 1--1 phone
+character_item 1--1 item
+character_vehicle 1--1 vehicle
+character_job 1--1 job
+character_gang 1--1 gang
+
+character_job 1--1 job_grade
+character_gang 1--1 gang_grade

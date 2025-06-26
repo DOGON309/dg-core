@@ -1,25 +1,46 @@
 DGCore = DGCore or {}
-DGModel = DGModel or {}
+DGCore.Model = DGCore.Model or {}
 
-function DGModel.User(user)
+function DGCore.Model.User(id, license, license2, is_admin, is_ban, ban_reason, is_whitelist, note)
     local self = {}
 
-    self.id = user.id
-    self.rockstart_id = user.rockstart_id
-    self.is_admin = user.is_admin
-    self.is_ban = user.is_ban
-    self.ban_reason = user.ban_reason
-    self.is_whitelist = user.is_whitelist
+    self.id = id
+    self.license = license
+    self.license2 = license2
+    self.is_admin = is_admin
+    self.is_ban = is_ban
+    self.ban_reason = ban_reason
+    self.is_whitelist = is_whitelist
+    self.note = note
 
-    function self:toInsertArray()
+    function self:toInsert()
         return {
             self.id,
-            self.rockstart_id,
+            self.license,
+            self.license2,
             self.is_admin,
             self.is_ban,
             self.ban_reason,
-            self.is_whitelist
+            self.is_whitelist,
+            self.note
         }
+    end
+
+    function self:toUpdate()
+        return {
+            self.license,
+            self.license2,
+            self.is_admin,
+            self.is_ban,
+            self.ban_reason,
+            self.is_whitelist,
+            self.note,
+            self.id
+        }
+    end
+
+    function self:save()
+        DGCore.DB.User.Update(self)
     end
 
     return self

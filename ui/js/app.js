@@ -494,13 +494,13 @@ window.addEventListener("message", (event) => {
     }
 })
 
-renderCharacterList([{
-    'id': '1234',
-    'firstname': '田中',
-    'lastname': '太郎',
-    'gender': '男性',
-    'nationality': '日本',
-    'slot': 1,
-    'cash': 500,
-}])
-showSection('character')
+// renderCharacterList([{
+//     'id': '1234',
+//     'firstname': '田中',
+//     'lastname': '太郎',
+//     'gender': '男性',
+//     'nationality': '日本',
+//     'slot': 1,
+//     'cash': 500,
+// }])
+// showSection('character')

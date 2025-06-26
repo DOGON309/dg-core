@@ -3,7 +3,7 @@ DGConfig = {}
 -- QBCoreと設定内容はほぼ同じ
 
 DGConfig.MaxPlayers = GetConvarInt('sv_maxclients', 48)         -- 参加プレイヤーの最大人数（デフォルトは48人）
-DGConfig.DefaultSpawn = vector3(-1035.71, -2731.87, 12.86) -- デフォルトにスポーン位置
+DGConfig.DefaultSpawn = { x = -1035.71, y = -2731.87, z = 12.86 } -- デフォルトにスポーン位置
 DGConfig.UpdateInterval = 5                                     -- プレイヤデータの更新頻度（分単位）
 DGConfig.StatusInterval = 5000                                  -- プレイヤーステータスの確認頻度（ミリ秒単位）
 
@@ -14,10 +14,10 @@ DGConfig.Money.MinusLimit = -5000                                     -- マイ�
 DGConfig.Money.PayCheckTimeOut = 10                                   -- 給料が払われるタイミング
 DGConfig.Money.PayCheckSociety = false                                -- 給料を会社口座から引き落としされるシステム
 
-DGConfig.Player = {}
-DGConfig.Player.HungerRate = 4.2 -- 空腹になる速度
-DGConfig.Player.ThirstRate = 3.8 -- 喉が渇く速度
-DGConfig.Player.Nationality = 'Japan'
+DGConfig.Character = {}
+DGConfig.Character.HungerRate = 4.2 -- 空腹になる速度
+DGConfig.Character.ThirstRate = 3.8 -- 喉が渇く速度
+DGConfig.Character.DefaultWeight = 15000
 
 DGConfig.Server = {}
 DGConfig.Server.Closed = false
