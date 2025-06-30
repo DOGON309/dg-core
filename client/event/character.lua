@@ -1,29 +1,29 @@
-RegisterNetEvent("dg-core:Client:ShowCharacter")
-AddEventHandler("dg-core:Client:ShowCharacter", function (characters)
-    SetNuiFocus(true, true)
-    SendNUIMessage({
-        action = "showCharacter",
-        characters = characters
-    })
-end)
-
 RegisterNUICallback("CreateCharacter", function (data, cb)
     TriggerServerEvent("dg-core:Server:CreateCharacter", data)
     cb({})
 end)
 
-RegisterNUICallback("deleteCharacter", function (data, cb)
-    TriggerServerEvent("dg-core:Server:deleteCharacter", data)
+RegisterNUICallback("DeleteCharacter", function (data, cb)
+    TriggerServerEvent("dg-core:Server:DeleteCharacter", data)
     cb({})
 end)
 
-RegisterNUICallback("selectCharacter", function (data, cb)
-    TriggerServerEvent("dg-core:Server:selectCharacter", data)
+RegisterNUICallback("SelectCharacter", function (data, cb)
+    TriggerServerEvent("dg-core:Server:SelectCharacter", data)
     cb({})
 end)
 
-RegisterNetEvent("dg-core:Client:spawnCharacter")
-AddEventHandler("dg-core:Client:spawnCharacter", function (character)
+RegisterNetEvent("dg-core:Client:ShowCharacter")
+AddEventHandler("dg-core:Client:ShowCharacter", function (characters)
+    SetNuiFocus(true, true)
+    SendNUIMessage({
+        action = "ShowCharacter",
+        characters = characters
+    })
+end)
+
+RegisterNetEvent("dg-core:Client:SpawnCharacter")
+AddEventHandler("dg-core:Client:SpawnCharacter", function (character)
     ShutdownLoadingScreen()
 
     local spawnPos = DGConfig.DefaultSpawn
@@ -44,7 +44,7 @@ AddEventHandler("dg-core:Client:spawnCharacter", function (character)
     DoScreenFadeIn(500)
 
     SendNUIMessage({
-        action = "closeCharacter"
+        action = "CloseCharacter"
     })
     TriggerEvent("dg-core:Client:LoadSkin", character.skin)
 end)

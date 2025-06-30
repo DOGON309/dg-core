@@ -11,6 +11,7 @@ version '0.1.0'
 -- クライアントに読み込まれるファイル
 client_scripts {
     'config.lua',
+    'client/event/*.lua',
     'client/*.lua'
 }
 

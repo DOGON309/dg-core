@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.border = '2px solid #00ffcc';
             card.style.boxShadow = '0 12px 40px rgba(0, 255, 204, 0.4)';
 
-            fetch("https://dg-core/selectCharacter", {
+            fetch("https://dg-core/SelectCharacter", {
                 body: JSON.stringify({character_id: characterId}),
                 headers: {
                     "Content-Type": "application/json; charset=UTF-8",
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const btn = e.target.closest('.delete-character-btn');
             const userId = btn.value;
 
-            fetch('https://dg-core/deleteCharacter', {
+            fetch('https://dg-core/DeleteCharacter', {
                 body: JSON.stringify({user_id: userId}),
                 headers: {
                     "Content-Type": "application/json; charset=UTF-8",
@@ -454,17 +454,21 @@ window.addEventListener("message", (event) => {
     const data = event.data;
 
     // 
-    if (data.action === "showCharacter") {
+    if (data.action === "ShowCharacter") {
         console.log("showCharacterが呼び出されました");
 
         renderCharacterList(data.characters);
         showSection('character');
     }
 
-    if (data.action === "closeCharacter") {
+    if (data.action === "CloseCharacter") {
         console.log("Character Select Close");
 
         document.getElementById("character").classList.remove("active");
+    }
+
+    if (data.action === "OpenInventory") {
+        showSection('inventory');
     }
 
     if (data.action === "updateMinimap") {
@@ -503,4 +507,4 @@ window.addEventListener("message", (event) => {
 //     'slot': 1,
 //     'cash': 500,
 // }])
-// showSection('character')
+// showSection('inventory')
