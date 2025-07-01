@@ -19,6 +19,7 @@ DGCore.Constant.Tables = {
     GangPermission = 'gang_permission',
     Character = '`character`',
     CharacterBank = 'character_bank',
+    CharacterPhone = 'character_phone',
     CharacterItem = 'character_item',
     CharacterVehicle = 'character_vehicle',
     CharacterJob = 'character_job',

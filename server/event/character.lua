@@ -23,9 +23,12 @@ AddEventHandler('dg-core:Server:CreateCharacter', function (data)
 end)
 
 RegisterNetEvent('dg-core:Server:SelectCharacter')
-AddEventHandler('dg-core:Server:SelectCharacter', function (character_id)
+AddEventHandler('dg-core:Server:SelectCharacter', function (data)
     local src = source
-    local character = DGCore.Characters[character_id]
+    local character = DGCore.Characters[data.character_id]
+
+    print(data.character_id)
+    print(character)
 
     TriggerClientEvent('dg-core:Client:SpawnCharacter', src, character)
 end)

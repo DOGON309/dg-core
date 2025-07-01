@@ -4,90 +4,26 @@ function showSection(sectionId) {
     const sections = document.querySelectorAll('.ui-section');
     sections.forEach(section => section.classList.remove('active'));
     
-    // Remove active class from all nav pills
-    const pills = document.querySelectorAll('.nav-pill');
-    pills.forEach(pill => pill.classList.remove('active'));
-    
     // Show selected section
     document.getElementById(sectionId).classList.add('active');
-    
-    // Add active class to clicked nav pill
-    const clickedPill = Array.from(pills).find(pill => 
-        pill.textContent.includes(getJapaneseLabel(sectionId))
-    );
-    if (clickedPill) {
-        clickedPill.classList.add('active');
-    }
-}
-
-function getJapaneseLabel(sectionId) {
-    const labels = {
-        'character': 'キャラクター選択',
-        'inventory': 'インベントリ',
-        'phone': '電話アプリ',
-        'hud': 'HUD・ステータス'
-    };
-    return labels[sectionId] || sectionId;
-}
-
-// ミニマップの拡大・縮小機能
-let minimapZoom = 1.0;
-const MIN_ZOOM = 0.5;
-const MAX_ZOOM = 3.0;
-const ZOOM_STEP = 0.25;
-
-function initializeMinimapControls() {
-    const zoomInBtn = document.querySelector('.minimap-zoom-in');
-    const zoomOutBtn = document.querySelector('.minimap-zoom-out');
-    
-    if (zoomInBtn) {
-        zoomInBtn.addEventListener('click', function() {
-            zoomMinimap(1);
-        });
-    }
-    
-    if (zoomOutBtn) {
-        zoomOutBtn.addEventListener('click', function() {
-            zoomMinimap(-1);
-        });
-    }
-}
-
-function zoomMinimap(direction) {
-    const newZoom = minimapZoom + (direction * ZOOM_STEP);
-    
-    if (newZoom >= MIN_ZOOM && newZoom <= MAX_ZOOM) {
-        minimapZoom = newZoom;
-        updateMinimapZoom();
-    }
-}
-
-function updateMinimapZoom() {
-    const mapElements = document.querySelectorAll('.minimap-content');
-    
-    mapElements.forEach(mapElement => {
-        // 現在の回転状態を取得
-        const currentTransform = mapElement.style.transform || '';
-        const rotationMatch = currentTransform.match(/rotate\(([^)]+)\)/);
-        const rotation = rotationMatch ? rotationMatch[1] : '0deg';
-        
-        // 回転と拡大・縮小を組み合わせ
-        const rotationTransform = `rotate(${rotation})`;
-        const scaleTransform = `scale(${minimapZoom})`;
-        mapElement.style.transform = `${rotationTransform} ${scaleTransform}`;
-    });
-    
-    console.log(`Minimap zoom: ${minimapZoom.toFixed(2)}x`);
 }
 
 // Initialize all interactive elements
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize minimap controls
-    initializeMinimapControls();
-    
-    // Add hover effects for inventory slots
+    // インベントリここから
+    // インベントリを閉じる
+    document.addEventListener("keydown", function(e){
+        if (e.code === "Tab") {
+            e.preventDefault();
+            fetch(`https://dg-core/closeInventory`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({})
+            });
+        }
+    });
+
     const inventorySlots = document.querySelectorAll('.inventory-slot');
-    
     inventorySlots.forEach(slot => {
         slot.addEventListener('dragover', function(e) {
             e.preventDefault();
@@ -104,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // ドロップ処理をここに実装
         });
     });
+    // インベントリここまで
 
+    // スマホここから
     // Phone app interactions
     const phoneApps = document.querySelectorAll('.phone-app');
     phoneApps.forEach(app => {
@@ -114,7 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // アプリ開く処理をここに実装
         });
     });
+    // スマホここまで
 
+    // キャラクターここから
     document.addEventListener('dblclick', function(e) {
         // キャラクターカードの選択
         if (e.target.closest('.character-card:not(.create-character)')) {
@@ -178,7 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
             initializeCharacterCreation();
         }
     });
+    // キャラクターここまで
 
+    // ステータスここから
     // Status circle animations
     const statusCircles = document.querySelectorAll('.status-circle');
     statusCircles.forEach(circle => {
@@ -191,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'scale(1)';
         });
     });
+    // ステータスここまで
 
     // Navigation pills click handler
     const navPills = document.querySelectorAll('.nav-pill');
@@ -211,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Character Creation Functions
+// キャラクター作成画面
 function initializeCharacterCreation() {
     // Initialize birth year options
     const currentYear = new Date().getFullYear();
@@ -250,6 +193,7 @@ function initializeCharacterCreation() {
     }
 }
 
+// キャラクターの誕生日のセレクター
 function updateBirthDays() {
     const monthSelect = document.getElementById('birthMonth');
     const daySelect = document.getElementById('birthDay');
@@ -275,6 +219,7 @@ function updateBirthDays() {
     }
 }
 
+// キャラクター作成のプレビュー
 function updatePreview() {
     const lastName = document.getElementById('lastname')?.value || '';
     const firstName = document.getElementById('firstname')?.value || '';
@@ -333,6 +278,7 @@ function updatePreview() {
     }
 }
 
+// キャラクターの作成関数
 function handleCharacterCreation(event) {
     event.preventDefault();
     
@@ -434,22 +380,7 @@ function renderCharacterList(characters) {
     }
 }
 
-const mapConfig = {
-    worldMin: { x: -4000.0, y: -4000.0},
-    worldMax: { x: 4500.0, y: 8000.0},
-    baseMapSize: 2048
-}
-
-function worldToMapCoords(x, y) {
-    const { worldMin, worldMax, baseMapSize } = mapConfig;
-    const scaleMapSize = baseMapSize * 2.0;
-
-    const mapX = ((x - worldMin.x) / (worldMax.x - worldMin.x)) * scaleMapSize;
-    const mapY = ((worldMax.y - y) / (worldMax.y - worldMin.y)) * scaleMapSize;
-
-    return { mapX, mapY };
-}
-
+// Luaからイベント受信
 window.addEventListener("message", (event) => {
     const data = event.data;
 
@@ -468,33 +399,13 @@ window.addEventListener("message", (event) => {
     }
 
     if (data.action === "OpenInventory") {
+        console.log('open inventory');
         showSection('inventory');
     }
 
-    if (data.action === "updateMinimap") {
-        console.log("update Minimap!!");
-        const mapElement = document.querySelector(".minimap-content");
-
-        const coords = worldToMapCoords(data.x, data.y);
-
-        const minimapCenter = 100;
-        const offsetX = coords.mapX - minimapCenter;
-        const offsetY = coords.mapY - minimapCenter;
-
-        // 拡大・縮小を考慮した位置調整
-        const scaledOffsetX = offsetX * minimapZoom;
-        const scaledOffsetY = offsetY * minimapZoom;
-
-        mapElement.style.left = `-${scaledOffsetX}px`;
-        mapElement.style.top = `-${scaledOffsetY}px`;
-        
-        // 回転と拡大・縮小を組み合わせ
-        const currentTransform = mapElement.style.transform || '';
-        const rotationTransform = `rotate(${-data.heading}deg)`;
-        const scaleTransform = `scale(${minimapZoom})`;
-        
-        // 回転と拡大・縮小の順序を調整（回転→拡大・縮小）
-        mapElement.style.transform = `${rotationTransform} ${scaleTransform}`;
+    if (data.action === "CloseInventory") {
+        console.log('close inventory');
+        document.getElementById("inventory").classList.remove("active");
     }
 })
 
@@ -507,4 +418,4 @@ window.addEventListener("message", (event) => {
 //     'slot': 1,
 //     'cash': 500,
 // }])
-// showSection('inventory')
+showSection('inventory')
